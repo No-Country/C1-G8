@@ -6,7 +6,7 @@ const cryptoRoutes = require('./routes/conis.routes')
 
 
 //setting config
-app.set('name', 'server')
+app.set('name', 'Server')
 app.set('port', process.env.PORT || 4000)
 
 
