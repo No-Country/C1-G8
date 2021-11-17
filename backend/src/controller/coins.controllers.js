@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 
-//Devuelve lista de cryptomondeas y su cotizacion por unidad 
+//devuelve lista de cryptomondeas y su cotizacion por unidad 
 const cryptoResearch = async (req,res)=>{
     try {
         const { order, page } = req.query
