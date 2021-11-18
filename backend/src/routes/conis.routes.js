@@ -8,9 +8,8 @@ const cryptoController = require('../controller/coins.controllers');
 const router = Router();
 
 router.get('/coinslist', cryptoController.cryptoResearch);
-
+router.get('/coinsQuote',cryptoController.cryptoCotiz);
 router.get('/:id', cryptoController.cryptoPull);
-
 
 
 
