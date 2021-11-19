@@ -3,6 +3,7 @@
 Features:	
 Consumir api de coingecko		
 		Preparar fetch / get general	ok
+
 		Preparar fetch / get específico de cada moneda	ok
 			
 	Ver cotizaciones de distintas criptomonedas		
