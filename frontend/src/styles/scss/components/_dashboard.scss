@@ -1,0 +1,32 @@
+.dashboard-container{
+    display: grid;
+    grid-template-rows: min-content auto;
+
+    .bar{
+        background-color: map-get($colors, primary-color);
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.searcher{
+    display: flex;
+    padding: .5em 0;
+
+    .button{
+        width: 4em;
+        background-image: url(../img/buscar.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        cursor: pointer;
+    }
+
+    .searcher{
+        border: none;
+        outline: none;
+        padding: .75em .5em;
+        width: 40%;
+    }
+}
+

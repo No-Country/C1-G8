@@ -1,0 +1,41 @@
+// PUNTOS DE QUIEBRE
+$breakpoints:(
+    small: 320px,
+    medium: 640px,
+    large: 1024px,
+    xlarge: 1440px
+);
+
+// VARIABLES DEL CONTENEDOR (WRAPPER)
+$min-wrapper-width : map-get($breakpoints, small);
+$max-wrapper-width : 1200px;
+
+// VARIABLES DE APILAMIENTO
+:root{
+    --z-back: -10;
+    --z-normal: 1;
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+}
+
+$colors:(
+    primary-color: hsl(213, 10%, 44%)
+)
+
+// FUENTES
+// @font-face{
+//     font-family: "regular-font";
+//     font-style: normal;
+//     font-weight: 400;
+//     font-display: fallback;
+//     src: local("poppins-regular"), local("Poppins"), url(../fonts/Poppins-Regular.ttf);
+// }
+
+// @font-face{
+//     font-family: "medium-font";
+//     font-style: normal;
+//     font-weight: 500;
+//     font-display: fallback;
+//     src: local("poppins-medium"), local("Poppins-Medium"), url(../fonts/Poppins-Medium.ttf);
+// } 
