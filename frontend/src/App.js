@@ -7,17 +7,19 @@ import About from "./components/About";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/board" component={Board} />
-          <Route path="/about" component={About} />
-        </Switch>
-        <Home />
-        <Crypto />
-        <About />
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/board" component={Board} />
+            <Route path="/about" component={About} />
+          </Switch>
+          <Home />
+          <Board />
+          <About />
+        </div>
+      </Provider>
     </BrowserRouter>
   );
 }
