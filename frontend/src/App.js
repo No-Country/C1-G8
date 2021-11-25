@@ -1,10 +1,24 @@
-import { Route, Switch } from 'react-router-dom'
-import Listcoints from './components/Listcoints';
-
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Board from "./components/Board";
+import About from "./components/About";
 
 function App() {
   return (
-      <Listcoints/>
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/board" component={Board} />
+          <Route path="/about" component={About} />
+        </Switch>
+        <Home />
+        <Crypto />
+        <About />
+      </div>
+    </BrowserRouter>
   );
 }
 
