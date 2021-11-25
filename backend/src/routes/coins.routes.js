@@ -6,7 +6,7 @@ const {
   cryptoResearch,
   cryptoCotiz,
   cryptoPull,
-} = require("../controllers/coins.controllers");
+} = require("../controller/coins.controllers");
 
 //Rutas de url
 router.get("/coinslist", cryptoResearch);
