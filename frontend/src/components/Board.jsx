@@ -1,5 +1,5 @@
 import React from 'react'
-import Listcoints from './components/Listcoints';
+import Listcoints from './Listcoints';
 
 const Board = () => {
     return (
