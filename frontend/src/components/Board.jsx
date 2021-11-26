@@ -1,5 +1,6 @@
 import React from "react";
 import ListCoins from "./ListCoins";
+import Search from "./Search";
 
 const Board = () => {
   return (
@@ -13,6 +14,7 @@ const Board = () => {
         marginRight: "auto",
       }}
     >
+      <Search />
       <ListCoins />
     </div>
   );

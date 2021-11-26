@@ -26,6 +26,7 @@ const ListCoins = () => {
       <table
         style={{
           textAlign: "center",
+          margin: 0,
           position: "absolute",
           left: 100,
           right: 0,
