@@ -1,22 +1,21 @@
-import React from 'react'
-import Listcoints from './Listcoints';
+import React from "react";
+import ListCoins from "./ListCoins";
 
 const Board = () => {
-    return (
-        <div style={{
-            textAlign: "center",
-            position: "absolute",
-            left: 0,
-            right: 0,
-            marginLeft: "auto",
-            marginRight: "auto",
-          }}>
-            <p>map Crypto, iteration</p>
-            <p>map Crypto, iteration</p>
-            <p>map Crypto, iteration</p>
-        </div>
-        
-    )
-}
+  return (
+    <div
+      style={{
+        textAlign: "center",
+        position: "absolute",
+        left: 0,
+        right: 0,
+        marginLeft: "auto",
+        marginRight: "auto",
+      }}
+    >
+      <ListCoins />
+    </div>
+  );
+};
 
-export default Board
+export default Board;

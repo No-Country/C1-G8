@@ -1,12 +1,21 @@
-import React from 'react'
+import React from "react";
 
-// https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd
-const Crypto = () => {
-    return (
-        <div>
-            Render crypto
-        </div>
-    )
-}
+const Crypto = ({ image, symbol, name, price, change }) => {
+  return (
+    <>
+      <tr style={{ backgroundColor: "#DEEEED" }}>
+        <td>{symbol.toUpperCase()}</td>
+        <td>
+          <img src={image} alt={name} style={{ width: "60px" }} />
+        </td>
+        <td>{name}</td>
+        <td>{price}</td>
+        <td style={change > 0 ? { color: "green" } : { color: "red" }}>
+          {change}
+        </td>
+      </tr>
+    </>
+  );
+};
 
-export default Crypto
+export default Crypto;
