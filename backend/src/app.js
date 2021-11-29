@@ -5,7 +5,7 @@ const app = express();
 const cryptoRoutes = require("./routes/coins.routes");
 const db = require("./db/db");
 const userRoutes = require("./routes/user.routes");
-
+const walletrouter = require('./routes/wallet.routes')
 
 //setting config
 app.set("name", "Server");
@@ -23,6 +23,7 @@ app.use(morgan("dev"));
 //routes
 app.use("/api", cryptoRoutes);
 app.use("/api", userRoutes);
+app.use("/api", walletrouter);
 
 
 module.exports = app;
