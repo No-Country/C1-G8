@@ -6,6 +6,7 @@ const createUser = async (req, res) => {
     const user = new User({ userName, email, password });
     try {
         await user.save();
+       
         res.json({ user });
     } catch (error) {
         res.json({ error: error.message });
