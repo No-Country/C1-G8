@@ -1,9 +1,10 @@
-const User = require('../model/user');
+const Users = require('../model/User') 
 const jwt = require('jsonwebtoken');
+
 
 const createUser = async (req, res) => {
     const { userName, email, password } = req.body;
-    const user = new User({ userName, email, password });
+    const user = new Users({ userName, email, password });
     try {
         await user.save();
        
@@ -16,7 +17,7 @@ const createUser = async (req, res) => {
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await User.findOne({ email});
+        const user = await Users.findOne({ email});
         if (user) {
             if (user.password === password) {
                 const token = jwt.sign({ user: user }, 'secret', { expiresIn: '1h' });

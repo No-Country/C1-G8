@@ -3,8 +3,8 @@ const router =  Router()
 
 const {buycontrollers ,viewcontrollers } = require('../controller/wallet.controller')
 
-router.post('/cryptobuy',buycontrollers);
+router.post('/cryptobuy/:id', buycontrollers);
 
-router.get('/cryptoview', viewcontrollers);
+router.get('/cryptoview/:id', viewcontrollers);
 
 module.exports = router;

@@ -1,23 +1,23 @@
 const Users = require('../model/User') 
 
-const buycontrollers = async (req, res) => {
-    try{
-        const {id} = req.params
-        const user =  await Users.findById(id)
-        /*const wallet = user.wallet
-        wallet.push(req.body)
-        await user.save()*/
-        res.json(user)
-
-    }catch{ 
+const buycontrollers = async (req, res) => {  
+    try{   
+    const {id} = req.params
+    const user = await Users.findById(id)
+    const wallet = user.wallet
+    const {name, quantity} = req.body    
+    wallet.push({name, quantity})
+    await user.save()
+    res.json(user.wallet)
+    }
+    catch{ 
         res.json('error')
-
     }
 }
 const viewcontrollers = async (req, res) => {
     try{
         const {id} = req.params
-        const user = Users.findById(id)
+        const user = await  Users.findById(id)
         
         res.json(user.wallet)
 

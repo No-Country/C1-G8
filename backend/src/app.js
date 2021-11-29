@@ -5,7 +5,7 @@ const app = express();
 const cryptoRoutes = require("./routes/coins.routes");
 const db = require("./db/db");
 const userRoutes = require("./routes/user.routes");
-const walletrouter = require('./routes/wallet.routes')
+const walletrouter = require("./routes/wallet.routes")
 
 //setting config
 app.set("name", "Server");
