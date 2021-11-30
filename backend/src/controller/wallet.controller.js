@@ -1,48 +1,49 @@
-const Users = require('../model/User') 
+const Users = require('../model/User')
 const axios = require('axios')
 
-
-const buycontrollers = async (req, res) => {  
-    try{   
-    const {id} = req.params
-    const user = await Users.findById(id)
-    const wallet = user.wallet
-    const {name, quantity} = req.body    
-    wallet.push({name, quantity})
-    await user.save()
-    res.json(user.wallet)
+const getData = async (name,quantity)=>{
+    try {
+        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${name}`)
+        const results = {
+            name:response.data.id,
+            price:response.data.market_data.current_price.usd,
+            image:response.data.image.large,
+            quantity:quantity
+        }
+        return results
+    } catch (error) {
+        return error.message
     }
-    catch{ 
+}
+
+const buycontrollers = async (req, res) => {
+    try {
+        const { id } = req.params
+        const user = await Users.findById(id)
+        const wallet = user.wallet
+        const { name, quantity } = req.body
+        wallet.push({ name, quantity })
+        await user.save()
+        res.json(user.wallet)
+    }
+    catch {
         res.json('error')
     }
 }
 const viewcontrollers = async (req, res) => {
-    try{
-        const {id} = req.params
-        const user = await  Users.findById(id)
-    //    const myWallet = []
+    try {
+        const { id } = req.params
+        const user = await Users.findById(id)
+        const myWallet = await Promise.all(user.wallet.map((item)=>{
+            return getData(item.name,item.quantity)
+        })) 
         
-    //     user.wallet.map ( async   (item, index ) =>  {
-    
-    // try {
-    //     const {data} = await axios.get(`https://api.coingecko.com/api/v3/coins/${item.name}`)
-    //     myWallet.push
-    //     ({name: data.name, 
-    //      quantity: item.quantity, 
-    //      price: data.market_data.current_price.usd,
-    //      Image: data.image.small,    
-    //     })
-    // } catch (error) {
-    //     myWallet.push("error")
-    // }       
-    //     })
-   
-        res.json(user.wallet)
+        res.json(myWallet)
 
-    }catch{ 
+    } catch {
         res.json('error')
 
     }
 }
 
-module.exports = {buycontrollers ,viewcontrollers}
+module.exports = { buycontrollers, viewcontrollers }
