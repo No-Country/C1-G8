@@ -1,4 +1,4 @@
-const Users = require('../model/User') 
+const Users = require('../model/User')
 const jsonwebtoken = require('jsonwebtoken')
 
 const auth = async (req, res, next) => {
@@ -16,21 +16,25 @@ const auth = async (req, res, next) => {
     //     res.status(401).send({ error: 'Please authenticate' })
     // }
 
-    const token = req.headers.authorization;
 
-     if (!token) return res.send('Access denied. No token provided.');
-     try {
-         const data = token.split(' ')[1]
-         console.log(data)
-         const decoded = jsonwebtoken.verify(data, 'secret');
-         const user = await Users.findById(decoded._id) ;
-         if (!user) return res.json('user not found');
-         next();
-     } catch (e) {
-         res.json('Invalid token.');
-     }
-    
-    
+    try {
+        const strToken = req.headers.authorization
+        if (!strToken) {
+            res.json('You must login!')
+        } else {
+            const token = strToken.split(' ')[1]
+            console.log(token)
+            const topSecret = 'secret'
+            const key = jsonwebtoken.verify(token, topSecret)
+            console.log(key.user)
+            const user = await Users.findById(key.user._id)
+            if(!user) return res.json('User not found!')
+            next()
+        }
+    } catch (error) {
+        res.json('Login failure')
+    }
+
 }
 
 module.exports = auth;
