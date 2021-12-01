@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Crypto from "./Crypto";
 import axios from "axios";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,7 +13,7 @@ const ListCoins = () => {
   const [coins, setCoins] = useState([]);
 
   const url =
-    "http://localhost:4000/api/coinslist?vs_currency=usd&order=market_cap_desc&per_page=10&page=1";
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1";
   // https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd
 
   useEffect(() => {
@@ -34,9 +35,9 @@ const ListCoins = () => {
           <TableHead>
             <TableRow>
               <TableCell>Crypto </TableCell>
-              <TableCell>Symbol</TableCell>
-              <TableCell align="center">Name</TableCell>
-              <TableCell align="right">Price (USD)</TableCell>
+              <TableCell align="right">Symbol</TableCell>
+              <TableCell align="right">Name</TableCell>
+              <TableCell align="right">Price</TableCell>
               <TableCell align="right">24h Change</TableCell>
             </TableRow>
           </TableHead>
@@ -57,8 +58,8 @@ const ListCoins = () => {
                   <TableCell component="th" scope="row">
                     <img src={image} alt={name} style={{ width: "60px" }} />
                   </TableCell>
-                  <TableCell align="center">{symbol.toUpperCase()}</TableCell>
-                  <TableCell>{name}</TableCell>
+                  <TableCell align="right">{symbol.toUpperCase()}</TableCell>
+                  <TableCell align="right">{name}</TableCell>
                   <TableCell align="right">{current_price}</TableCell>
                   <TableCell align="right">
                     {price_change_percentage_24h}
@@ -69,6 +70,47 @@ const ListCoins = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <table
+        style={{
+          textAlign: "center",
+          margin: 0,
+          position: "absolute",
+          left: 100,
+          right: 0,
+        }}
+      >
+        <thead>
+          <tr>
+            <td>Coin</td>
+            <td>a</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>24h Change</td>
+          </tr>
+        </thead>
+        <tbody>
+          {coins.map(
+            ({
+              image,
+              symbol,
+              name,
+              current_price,
+              price_change_percentage_24h,
+            }) => {
+              return (
+                <Crypto
+                  key={symbol}
+                  image={image}
+                  symbol={symbol}
+                  name={name}
+                  price={current_price}
+                  change={price_change_percentage_24h}
+                />
+              );
+            }
+          )}
+        </tbody>
+      </table>
     </>
   );
 };
