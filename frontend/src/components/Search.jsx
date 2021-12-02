@@ -39,8 +39,8 @@ const Search = () => {
         }}
       >
         <TextField
-          id="outlined-basic"
-          label="Outlined"
+          id="standard-basic"
+          label="Standard"
           variant="outlined"
           type="text"
           onChange={handleChange}
