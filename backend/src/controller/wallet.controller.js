@@ -46,4 +46,24 @@ const viewcontrollers = async (req, res) => {
     }
 }
 
-module.exports = { buycontrollers, viewcontrollers }
+const editwallet = async (req, res) => {
+    try{
+        const {id, cryptoid} = req.params
+        const  user = await Users.findById(id)
+        user.wallet.forEach(w => {
+            if(w._id == cryptoid){
+                Object.assign(w,req.body)
+            }
+        })
+        await user.save()
+        
+        
+        res.json(user.wallet)
+
+    }catch{ 
+        res.json('error')
+
+    }
+}
+
+module.exports = { buycontrollers, viewcontrollers, editwallet }
