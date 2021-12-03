@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import Login from "./Login";
 import Logout from "./Logout";
 import Register from "./Register";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 const Navbar = () => {
   return (
@@ -20,9 +23,19 @@ const Navbar = () => {
           width: "80px",
         }}
       ></div>
-      <div>
-        <Link to="/">Home</Link>
-      </div>
+      <Box component={Paper}>
+        <div
+          style={{
+            width: "100px",
+            height: "40px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Link to="/">Home</Link>
+        </div>
+      </Box>
       <div>
         <Link to="/board">Board</Link>
       </div>
