@@ -15,7 +15,7 @@ const Wallet = () => {
 
   const [userId, setUserId] = useState("");
 
-  const urlWWW = `https://localhost/cryptoview/${userId}/`;
+  const urlWWW = `http://localhost:4000/api/cryptoview/${userId}/`;
   // "https://localhost/cryptoview/:id"
 
   const handleChangeUser = (event) => {
@@ -30,6 +30,7 @@ const Wallet = () => {
 
       if (data.results) {
         setCoins(data.results);
+        console.log(data.results);
       } else {
         setCoins(data);
       }
@@ -62,36 +63,21 @@ const Wallet = () => {
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           Wallet data, portfolio holding managment
         </Typography>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          {coins}
+        </Typography>
       </Box>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 450 }} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell>Crypto </TableCell>
-              <TableCell align="right">Symbol</TableCell>
+              <TableCell>Coin</TableCell>
               <TableCell align="right">Name</TableCell>
               <TableCell align="right">Price</TableCell>
               <TableCell align="right">Quantity</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {coins.map(
-              ({ image, symbol, name, current_price, QUANTITY, id }) => (
-                <TableRow
-                  key={id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    <img src={image} alt={name} style={{ width: "60px" }} />
-                  </TableCell>
-                  <TableCell align="right">{symbol.toUpperCase()}</TableCell>
-                  <TableCell align="right">{name}</TableCell>
-                  <TableCell align="right">{current_price}</TableCell>
-                  <TableCell align="right">{QUANTITY}</TableCell>
-                </TableRow>
-              )
-            )}
-          </TableBody>
+          <TableBody></TableBody>
         </Table>
       </TableContainer>
     </>
@@ -99,3 +85,20 @@ const Wallet = () => {
 };
 
 export default Wallet;
+
+/*
+{coins.map(({ image, name, price, quantity }) => (
+  <TableRow
+    key={name}
+    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+  >
+    <TableCell component="th" scope="row">
+      <img src={image} alt={name} style={{ width: "60px" }} />
+    </TableCell>
+
+    <TableCell align="right">{name}</TableCell>
+    <TableCell align="right">{price}</TableCell>
+    <TableCell align="right">{quantity}</TableCell>
+  </TableRow>
+))}
+*/

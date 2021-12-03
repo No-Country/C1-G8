@@ -23,14 +23,14 @@ const Login = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [inputUser, setInputUser] = useState("");
-  const [username, setUsername] = useState("");
+  const [inputMail, setInputMail] = useState("");
+  const [mail, setMail] = useState("");
   const [inputPass, setInputPass] = useState("");
   const [pass, setPass] = useState("");
   const [globalUser, setGlobalUser] = useState({});
 
-  const handleChangeUser = (event) => {
-    setInputUser(event.target.value);
+  const handleChangeMail = (event) => {
+    setInputMail(event.target.value);
   };
 
   const handleChangePass = (event) => {
@@ -40,23 +40,34 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setUsername(inputUser);
+    setMail(inputMail);
   };
   //set Username with Redux
 
-  const urlWWW = `https://localhost/login/${username}/`;
+  const urlWWW = `http://localhost:4000/api/login/`;
   // "https://localhost/cryptoview/:id"
 
   const handleLogin = () => {
-    (async () => {
-      const { data } = await axios.post(urlWWW);
+    console.log("handleLogin");
+    console.log(`email: ${mail}`);
+    try {
+      (async () => {
+        const { data } = await axios.post(urlWWW, {
+          email: mail,
+          password: pass,
+        });
 
-      if (data.results) {
-        setGlobalUser(data.results);
-      } else {
-        setGlobalUser(data);
-      }
-    })();
+        if (data.res) {
+          setGlobalUser(data.res);
+          console.log(data.res);
+        } else {
+          setGlobalUser(data);
+          console.log(data);
+        }
+      })();
+    } catch (err) {
+      console.log(err);
+    }
 
     handleClose();
   };
@@ -80,7 +91,7 @@ const Login = () => {
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <div>
-              Username: {username}
+              E-Mail: {mail}
               <Button component={Paper} onClick={handleLogin}>
                 Login
               </Button>
@@ -94,8 +105,8 @@ const Login = () => {
             >
               <input
                 type="text"
-                onChange={handleChangeUser}
-                value={inputUser}
+                onChange={handleChangeMail}
+                value={inputMail}
               />
               <input
                 type="password"
