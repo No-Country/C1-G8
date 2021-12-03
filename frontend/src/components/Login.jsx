@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -22,19 +23,43 @@ const Login = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [search, setSearch] = useState("");
+  const [inputUser, setInputUser] = useState("");
   const [username, setUsername] = useState("");
+  const [inputPass, setInputPass] = useState("");
+  const [pass, setPass] = useState("");
+  const [globalUser, setGlobalUser] = useState({});
 
-  const handleChange = (event) => {
-    setSearch(event.target.value);
+  const handleChangeUser = (event) => {
+    setInputUser(event.target.value);
+  };
+
+  const handleChangePass = (event) => {
+    setInputPass(event.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setUsername(search);
+    setUsername(inputUser);
   };
   //set Username with Redux
+
+  const urlWWW = `https://localhost/login/${username}/`;
+  // "https://localhost/cryptoview/:id"
+
+  const handleLogin = () => {
+    (async () => {
+      const { data } = await axios.post(urlWWW);
+
+      if (data.results) {
+        setGlobalUser(data.results);
+      } else {
+        setGlobalUser(data);
+      }
+    })();
+
+    handleClose();
+  };
 
   //connect get consume fetch Username from Store
 
@@ -54,22 +79,32 @@ const Login = () => {
             Login
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Username, password
+            <div>
+              Username: {username}
+              <Button component={Paper} onClick={handleLogin}>
+                Login
+              </Button>
+            </div>
+            <form
+              onSubmit={handleSubmit}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <input
+                type="text"
+                onChange={handleChangeUser}
+                value={inputUser}
+              />
+              <input
+                type="password"
+                onChange={handleChangePass}
+                value={inputPass}
+              />
+              <button>Set</button>
+            </form>
           </Typography>
-          <div>
-            <p>Username: {username}</p>
-          </div>
-          <form
-            onSubmit={handleSubmit}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <input type="text" onChange={handleChange} value={search} />
-            <input type="password" />
-            <button>Search</button>
-          </form>
         </Box>
       </Modal>
     </div>
