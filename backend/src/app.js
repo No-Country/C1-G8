@@ -6,6 +6,8 @@ const cryptoRoutes = require("./routes/coins.routes");
 const db = require("./db/db");
 const userRoutes = require("./routes/user.routes");
 const walletrouter = require("./routes/wallet.routes")
+const session = require("express-session");
+
 
 //setting config
 app.set("name", "Server");
@@ -16,6 +18,10 @@ db();
 
 //middlewares
 app.use(express.json());
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,}))
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(morgan("dev"));

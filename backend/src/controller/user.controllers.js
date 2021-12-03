@@ -1,10 +1,12 @@
 const Users = require('../model/User') 
 const jwt = require('jsonwebtoken');
-
+const bcrypt = require("bcrypt")
 
 const createUser = async (req, res) => {
     const { userName, email, password } = req.body;
-    const user = new Users({ userName, email, password });
+    const pass = bcrypt.hashSync(password, 10)
+    console.log(pass)
+    const user = new Users({  userName, email, password: bcrypt.hashSync(password, 10)  });
     try {
         await user.save();
        
@@ -20,8 +22,12 @@ const loginUser = async (req, res) => {
         const user = await Users.findOne({ email});
         if (user) {
             if (user.password === password) {
+                req.session.id=user._id
+                
+                req.session.name=user.userName
+                console.log(req.session.id)
                 const token = jwt.sign({ user: user }, 'secret', { expiresIn: '1h' });
-                res.json({ token });
+                res.json({ token, id:req.session.id, name:req.session.name });
             }
             else {
                 res.json({ error: 'Invalid data' });
@@ -34,4 +40,15 @@ const loginUser = async (req, res) => {
     }
 }
 
-module.exports = { createUser, loginUser };
+
+const logout = async (req,res) => {
+    try{
+        req.session.destroy()
+    req.json('the session is finish')
+
+    }
+    catch(error){
+        res.json({error})
+    }
+}
+module.exports = { createUser, loginUser, logout};
