@@ -3,6 +3,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
 
 const style = {
   position: "absolute",
@@ -23,14 +24,16 @@ const Logout = () => {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Logout</Button>
+      <Button component={Paper} onClick={handleOpen}>
+        Logout
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box component={Paper} sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Are you sure
           </Typography>

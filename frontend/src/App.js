@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Board from "./components/Board";
+import Exchange from "./components/Exchange";
+import Wallet from "./components/Wallet";
 import About from "./components/About";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
@@ -25,6 +27,7 @@ function ThemeMode() {
         display: "flex",
         position: "absolute",
         width: "75px",
+        height: "00px",
         alignItems: "center",
         justifyContent: "left",
         bgcolor: "background.default",
@@ -80,6 +83,8 @@ function App() {
               <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route path="/board" element={<Board />} />
+                <Route path="/exchange" element={<Exchange />} />
+                <Route path="/wallet" element={<Wallet />} />
                 <Route path="/about" element={<About />} />
               </Routes>
             </div>

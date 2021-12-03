@@ -23,25 +23,81 @@ const Navbar = () => {
           width: "80px",
         }}
       ></div>
+
+      <div>
+        <Box component={Paper}>
+          <Link to="/">
+            <div
+              style={{
+                width: "80px",
+                height: "40px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              Home.img
+            </div>
+          </Link>
+        </Box>
+        <Box component={Paper}>
+          <div
+            style={{
+              width: "80px",
+              height: "40px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Link to="/board">Board</Link>
+          </div>
+        </Box>
+      </div>
+      <div>
+        <Box component={Paper}>
+          <div
+            style={{
+              width: "80px",
+              height: "40px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Link to="/exchange">Exchange</Link>
+          </div>
+        </Box>
+
+        <Box component={Paper}>
+          <Link to="/wallet">
+            <div
+              style={{
+                width: "80px",
+                height: "40px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              WallET
+            </div>
+          </Link>
+        </Box>
+      </div>
       <Box component={Paper}>
         <div
           style={{
-            width: "100px",
+            width: "80px",
             height: "40px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
         </div>
       </Box>
-      <div>
-        <Link to="/board">Board</Link>
-      </div>
-      <div>
-        <Link to="/about">About</Link>
-      </div>
       <div>
         <Register />
         <Login />

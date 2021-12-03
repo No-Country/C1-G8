@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
+import Paper from "@mui/material/Paper";
 
 const Search = () => {
   const [search, setSearch] = useState("");
@@ -32,6 +33,7 @@ const Search = () => {
       <p>{coin.name}</p>
       <p>{coin.symbol}</p>
       <FormControl
+        component={Paper}
         onSubmit={handleSubmit}
         style={{
           display: "flex",
