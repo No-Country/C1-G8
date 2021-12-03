@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Crypto from "./Crypto";
+import React, { useState } from "react";
 import axios from "axios";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -14,13 +13,20 @@ import Typography from "@mui/material/Typography";
 const Wallet = () => {
   const [coins, setCoins] = useState([]);
 
-  const url =
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1";
-  // https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd
+  const [userId, setUserId] = useState("");
 
-  useEffect(() => {
+  const urlWWW = `https://localhost/cryptoview/${userId}/`;
+  // "https://localhost/cryptoview/:id"
+
+  const handleChangeUser = (event) => {
+    setUserId(event.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     (async () => {
-      const { data } = await axios.get(url);
+      const { data } = await axios.get(urlWWW);
 
       if (data.results) {
         setCoins(data.results);
@@ -28,10 +34,27 @@ const Wallet = () => {
         setCoins(data);
       }
     })();
-  }, []);
+  };
 
   return (
     <>
+      <Box component={Paper}>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <input
+            type="text"
+            placeholder="userId"
+            onChange={handleChangeUser}
+            value={userId}
+          />
+          <button>Search</button>
+        </form>
+      </Box>
       <Box component={Paper}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
           Wallet

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Crypto from "./Crypto";
+import React, { useState } from "react";
 import axios from "axios";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,26 +11,102 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 const Exchange = () => {
-  const [coins, setCoins] = useState([]);
+  const [userId, setUserId] = useState("");
+  const [cryptoId, setCryptoId] = useState("");
+  const [cryptoUnits, setCryptoUnits] = useState("");
+  const [coin, setCoin] = useState([]);
 
-  const url =
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1";
-  // https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd
+  const url = `https://localhost/editwallet/${userId}/${cryptoId}`;
+  // "https://localhost/editwallet/:id/:cryptoid"
+  const url2 = `https://localhost/cryptobuy/${userId}`;
+  // "https://localhost/cryptobuy/:id"
 
-  useEffect(() => {
+  const handleChangeUser = (event) => {
+    setUserId(event.target.value);
+  };
+
+  const handleChangeCrypto = (event) => {
+    setCryptoId(event.target.value);
+  };
+
+  const handleChangeUnits = (event) => {
+    setCryptoUnits(event.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     (async () => {
       const { data } = await axios.get(url);
 
       if (data.results) {
-        setCoins(data.results);
+        setCoin(data.results);
       } else {
-        setCoins(data);
+        setCoin(data);
       }
     })();
-  }, []);
+  };
+
+  const handleSubmit2 = (e) => {
+    e.preventDefault();
+
+    (async () => {
+      const { data } = await axios.get(url2);
+
+      if (data.results) {
+        setCoin(data.results);
+      } else {
+        setCoin(data);
+      }
+    })();
+  };
 
   return (
     <>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        edit
+        <input
+          type="text"
+          placeholder="userId"
+          onChange={handleChangeUser}
+          value={userId}
+        />
+        <input
+          type="text"
+          placeholder="cryptoId"
+          onChange={handleChangeCrypto}
+          value={cryptoId}
+        />
+        <button>Search</button>
+      </form>
+      <form
+        onSubmit={handleSubmit2}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        buy
+        <input
+          type="text"
+          placeholder="cryptoId"
+          onChange={handleChangeCrypto}
+          value={cryptoId}
+        />
+        <input
+          type="text"
+          placeholder="cryptoUnits"
+          onChange={handleChangeUnits}
+          value={cryptoUnits}
+        />
+        <button>Search</button>
+      </form>
       <Box component={Paper}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
           Exchange
@@ -52,7 +127,7 @@ const Exchange = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {coins.map(
+            {coin.map(
               ({ image, symbol, name, current_price, QUANTITY, id }) => (
                 <TableRow
                   key={id}

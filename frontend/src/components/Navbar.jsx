@@ -5,7 +5,6 @@ import Logout from "./Logout";
 import Register from "./Register";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 
 const Navbar = () => {
   return (

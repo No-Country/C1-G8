@@ -67,6 +67,7 @@ const Login = () => {
             }}
           >
             <input type="text" onChange={handleChange} value={search} />
+            <input type="password" />
             <button>Search</button>
           </form>
         </Box>
