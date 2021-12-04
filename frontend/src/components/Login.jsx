@@ -55,8 +55,8 @@ const Login = () => {
         const { data } = await axios.post(urlWWW, {
           email: mail,
           password: pass,
-        });
-
+        })
+        console.log(pass)
         if (data.res) {
           setGlobalUser(data.res);
           console.log(data.res);
