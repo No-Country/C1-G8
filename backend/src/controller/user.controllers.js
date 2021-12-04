@@ -23,11 +23,10 @@ const loginUser = async (req, res) => {
         if (user) {
             bcrypt.compare(password,user.password, (err,result)=>{
                 if (result) {
-                    req.session.id = user._id
+                    req.session._id = user._id
                     req.session.name = user.userName
-                    console.log(req.session.id)
                     const token = jwt.sign({ user: user }, 'secret', { expiresIn: '1h' });
-                    res.json({ token, id: req.session.id, name: req.session.name });
+                    res.json({ token, id: req.session._id, name: req.session.name });
                 }
                 else {
                     res.json({ error: 'Invalid data' });
@@ -47,13 +46,13 @@ const logout = (req, res) => {
     try {
         if(req.session){
             req.session.destroy((err)=>{
-                if(err) throw err
-                console.log('Logout')
+                if(err){
+                    res.json('Unable to log out')
+                }else{
+                    res.json('Logout successful')
+                }
             })
-            req.json('exit')
         }
-        
-
     }
     catch (error) {
         res.json('Error logout')
