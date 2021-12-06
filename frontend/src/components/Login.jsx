@@ -23,31 +23,25 @@ const Login = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [inputMail, setInputMail] = useState("");
-  const [mail, setMail] = useState("");
-  const [inputPass, setInputPass] = useState("");
-  const [pass, setPass] = useState("");
   const [globalUser, setGlobalUser] = useState({});
+  // objectID
 
-  const handleChangeMail = (event) => {
-    setInputMail(event.target.value);
-  };
+  const [formData, setFormData] = useState({
+    user: "",
+    email: "",
+    pass: "",
+  });
 
-  const handleChangePass = (event) => {
-    setInputPass(event.target.value);
+  const handleOnChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setMail(inputMail);
-  };
-  //set Username with Redux
-
-  const urlWWW = `http://localhost:4000/api/login/`;
-  // "https://localhost/cryptoview/:id"
-
-  const handleLogin = () => {
     console.log("handleLogin");
     console.log(`email: ${mail}`);
     try {
@@ -55,11 +49,12 @@ const Login = () => {
         const { data } = await axios.post(urlWWW, {
           email: mail,
           password: pass,
-        })
-        console.log(pass)
+        });
+        console.log(pass);
         if (data.res) {
           setGlobalUser(data.res);
           console.log(data.res);
+          console.log(data);
         } else {
           setGlobalUser(data);
           console.log(data);
@@ -71,6 +66,10 @@ const Login = () => {
 
     handleClose();
   };
+  //set Username with Redux
+
+  const urlWWW = `http://localhost:4000/api/login/`;
+  // "https://localhost/login/:id"
 
   //connect get consume fetch Username from Store
 
@@ -90,12 +89,6 @@ const Login = () => {
             Login
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <div>
-              E-Mail: {mail}
-              <Button component={Paper} onClick={handleLogin}>
-                Login
-              </Button>
-            </div>
             <form
               onSubmit={handleSubmit}
               style={{
@@ -105,15 +98,15 @@ const Login = () => {
             >
               <input
                 type="text"
-                onChange={handleChangeMail}
-                value={inputMail}
+                onChange={handleOnChange}
+                value={formData.email}
               />
               <input
                 type="password"
-                onChange={handleChangePass}
-                value={inputPass}
+                onChange={handleOnChange}
+                value={formData.pass}
               />
-              <button>Set</button>
+              <button>Login</button>
             </form>
           </Typography>
         </Box>
