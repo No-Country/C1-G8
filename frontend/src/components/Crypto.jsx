@@ -28,7 +28,7 @@ const Crypto = ({
           <img src={image} alt={name} style={{ width: "60px" }} />
         </td>
         <td>{name}</td>
-        <td>{current_price.usd}</td>
+        <td>{current_price}</td>
         <td style={price_change_percentage_24h > 0 ? { color: "green" } : { color: "red" }}>
           {price_change_percentage_24h}
         </td>
