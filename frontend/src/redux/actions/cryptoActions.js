@@ -4,13 +4,16 @@ export const CRYPTO_ACTION = "CRYPTO_ACTION";
 export const CRYPTO_ACTION_SUCCESS = "CRYPTO_ACTION_SUCCESS";
 export const CRYPTO_ACTION_ERROR = "CRYPTO_ACTION_ERROR";
 
-export function getCryptoAction(crypto) {
+const url = "http://localhost:4000/api";
+
+
+export function getCryptoAction(id) {
   return async (dispatch) => {
     dispatch(getCrypto());
 
     try {
-      await Axios.get("http://localhost:4000/crypto", crypto);
-      dispatch(getCryptoSuccess(crypto));
+    const response =  await Axios.get(`${url}/${id}`);
+      dispatch(getCryptoSuccess(response.data));
     } catch (error) {
       dispatch(getCryptoError(true));
     }

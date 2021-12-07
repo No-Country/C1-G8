@@ -1,4 +1,5 @@
-import { createStore, applyMiddleware, compose } from "redux";
+import { applyMiddleware, compose, createStore } from "redux";
+
 import reducer from "../reducers";
 import thunk from "redux-thunk";
 
@@ -13,4 +14,4 @@ const store = createStore(
   )
 );
 
-export default store;
+export default   store;

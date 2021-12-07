@@ -4,13 +4,16 @@ export const COINS_ACTION = "COINS_ACTION";
 export const COINS_ACTION_SUCCESS = "COINS_ACTION_SUCCESS";
 export const COINS_ACTION_ERROR = "COINS_ACTION_ERROR";
 
-export function getCoinsAction(coins) {
+const url = "http://localhost:4000/api";
+
+
+export function getCoinsAction() {
   return async (dispatch) => {
     dispatch(getCoins());
 
     try {
-      await Axios.get("http://localhost:4000/coins", coins);
-      dispatch(getCoinsSuccess(coins));
+    const response =  await Axios.get(`${url}/coinslist`);
+      dispatch(getCoinsSuccess(response.data));
     } catch (error) {
       dispatch(getCoinsError(true));
     }
