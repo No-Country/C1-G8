@@ -15,7 +15,7 @@ export function getCoinsAction() {
     const response =  await Axios.get(`${url}/coinslist`);
       dispatch(getCoinsSuccess(response.data));
     } catch (error) {
-      dispatch(getCoinsError(true));
+      dispatch(getCoinsError());
     }
   };
 }
