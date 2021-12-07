@@ -1,37 +1,24 @@
-import React, { useState } from "react";
-import axios from "axios";
 import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
+import React from "react";
+import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
-  const [search, setSearch] = useState("");
-  const [coin, setCoin] = useState([]);
-
+  const Navigate = useNavigate();
+  const [search, setSearch] = React.useState("");
+  
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    (async () => {
-      const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/${search}`
-      );
-
-      if (data.results) {
-        setCoin(data.results);
-      } else {
-        setCoin(data);
-      }
-    })();
+    Navigate(`/${search}`);
   };
 
   return (
     <div>
-      <p>{coin.name}</p>
-      <p>{coin.symbol}</p>
       <FormControl
         component={Paper}
         onSubmit={handleSubmit}

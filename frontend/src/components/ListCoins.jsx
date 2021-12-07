@@ -1,32 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import Crypto from "./Crypto";
-import axios from "axios";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import { getCoinsAction } from "../redux/actions/coinsActions";
 
 const ListCoins = () => {
-  const [coins, setCoins] = useState([]);
-
-  const url =
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1";
-  // https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd
-
+  const dispatch = useDispatch();
+  const coins = useSelector((state) => state.coins.coins);
+  
   useEffect(() => {
-    (async () => {
-      const { data } = await axios.get(url);
-
-      if (data.results) {
-        setCoins(data.results);
-      } else {
-        setCoins(data);
-      }
-    })();
-  }, []);
+    dispatch(getCoinsAction());
+  }, [dispatch]);
 
   return (
     <>
@@ -89,7 +80,7 @@ const ListCoins = () => {
           </tr>
         </thead>
         <tbody>
-          {coins.map(
+         {coins && coins.map(
             ({
               image,
               symbol,

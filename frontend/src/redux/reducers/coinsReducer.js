@@ -1,7 +1,7 @@
 import {
   COINS_ACTION,
-  COINS_ACTION_SUCCESS,
   COINS_ACTION_ERROR,
+  COINS_ACTION_SUCCESS,
 } from "../actions/coinsActions";
 
 const initialState = {
@@ -19,7 +19,7 @@ function coinsReducer(state = initialState, action) {
     case COINS_ACTION_SUCCESS:
       return {
         ...state,
-        coins: [...state.coins, action.payload],
+        coins: action.payload,
       };
     case COINS_ACTION_ERROR:
       return {

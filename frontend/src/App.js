@@ -1,20 +1,26 @@
 import "./App.css";
-import React from "react";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Board from "./components/Board";
-import Exchange from "./components/Exchange";
-import Wallet from "./components/Wallet";
+import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
+
 import About from "./components/About";
-import IconButton from "@mui/material/IconButton";
+import Board from "./components/Board";
 import Box from "@mui/material/Box";
-import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-// Redux
+import Crypto from "./components/Crypto";
+import Exchange from "./components/Exchange";
+import Home from "./components/Home";
+import IconButton from "@mui/material/IconButton";
+import Navbar from "./components/Navbar";
 import { Provider } from "react-redux";
+import React from "react";
+import Wallet from "./components/Wallet";
 import store from "./redux/store";
+
+// Redux
+
+
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -86,6 +92,7 @@ function App() {
                 <Route path="/exchange" element={<Exchange />} />
                 <Route path="/wallet" element={<Wallet />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/:id" element={<Crypto />} />    
               </Routes>
             </div>
           </Provider>
