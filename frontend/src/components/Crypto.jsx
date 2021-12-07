@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getCryptoAction } from "../redux/actions/cryptoActions";
 import { useParams } from "react-router-dom";
 
@@ -13,10 +12,11 @@ const Crypto = () => {
     Dispatch(getCryptoAction(id));
   }, [Dispatch, id]);
   
+  console.log(crypto)
 
   return (
     <>
-      <tr style={{ backgroundColor: "#DEEEED" }}>
+      {/* <tr style={{ backgroundColor: "#DEEEED" }}>
         <td>{crypto && crypto.symbol}</td>
         <td>
           <img src={crypto.image && crypto.image.large} alt={crypto.id} style={{ width: "60px" }} />
@@ -26,7 +26,7 @@ const Crypto = () => {
         <td style={crypto.market_data && crypto.market_data.price_change_percentage_24h > 0 ? { color: "green" } : { color: "red" }}>
           {crypto.market_data && crypto.market_data.price_change_percentage_24h}
         </td>
-      </tr>
+      </tr> */}
     </>
   );
 };
