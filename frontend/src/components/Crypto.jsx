@@ -3,30 +3,36 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCryptoAction } from "../redux/actions/cryptoActions";
 import { useParams } from "react-router-dom";
 
-const Crypto = () => {
-    const Dispatch = useDispatch();
-    const crypto = useSelector((state) => state.crypto.crypto);
-    const {id} = useParams ();
+const Crypto = ({
+  image,
+  symbol,
+  name,
+  current_price,
+  price_change_percentage_24h,
+}) => {
+  //   const dispatch = useDispatch();
+  //   const crypto = useSelector((state) => state.crypto.crypto);
+  //   const {id} = useParams ();
     
-  useEffect(() => {
-    Dispatch(getCryptoAction(id));
-  }, [Dispatch, id]);
+  // useEffect(() => {
+  //   dispatch(getCryptoAction(id));
+  // }, [dispatch, id]);
   
-  console.log(crypto)
+  // console.log(crypto)
 
   return (
     <>
-      {/* <tr style={{ backgroundColor: "#DEEEED" }}>
-        <td>{crypto && crypto.symbol}</td>
+      <tr style={{ backgroundColor: "#DEEEED" }}>
+        <td>{symbol}</td>
         <td>
-          <img src={crypto.image && crypto.image.large} alt={crypto.id} style={{ width: "60px" }} />
+          <img src={image} alt={name} style={{ width: "60px" }} />
         </td>
-        <td>{crypto && crypto.id}</td>
-        <td>{crypto.market_data && crypto.market_data.current_price.usd}</td>
-        <td style={crypto.market_data && crypto.market_data.price_change_percentage_24h > 0 ? { color: "green" } : { color: "red" }}>
-          {crypto.market_data && crypto.market_data.price_change_percentage_24h}
+        <td>{name}</td>
+        <td>{current_price.usd}</td>
+        <td style={price_change_percentage_24h > 0 ? { color: "green" } : { color: "red" }}>
+          {price_change_percentage_24h}
         </td>
-      </tr> */}
+      </tr>
     </>
   );
 };
