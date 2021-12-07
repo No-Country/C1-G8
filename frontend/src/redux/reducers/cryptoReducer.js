@@ -6,23 +6,23 @@ import {
 
 const initialState = {
   crypto: {},
-  error: null,
-  currency: null,
+  error: false,
+  currency: false,
 };
 
 function cryptoReducer(state = initialState, action) {
   switch (action.type) {
     case CRYPTO_ACTION:
       return {
-        cryto: {}, error: null,  currency: true, 
+        crypto: {}, error: false,  currency: true, 
       };
     case CRYPTO_ACTION_SUCCESS:
       return {
-        cryto: action.payload, error: null,  currency: null, 
+        crypto: action.payload, error: false,  currency: false, 
       };
     case CRYPTO_ACTION_ERROR:
       return {
-        cryto: {}, error: true,  currency: null, 
+        crypto: {}, error: true,  currency: false, 
       };
     default:
       return state;
