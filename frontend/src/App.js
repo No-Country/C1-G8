@@ -8,7 +8,6 @@ import Board from "./components/Board";
 import Box from "@mui/material/Box";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import Crypto from "./components/Crypto";
 import Exchange from "./components/Exchange";
 import Home from "./components/Home";
 import IconButton from "@mui/material/IconButton";
@@ -17,6 +16,7 @@ import { Provider } from "react-redux";
 import React from "react";
 import Wallet from "./components/Wallet";
 import store from "./redux/store";
+import DetailCrypto from "./components/DetailCrypto";
 
 // Redux
 
@@ -92,7 +92,7 @@ function App() {
                 <Route path="/exchange" element={<Exchange />} />
                 <Route path="/wallet" element={<Wallet />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/search/:id" element={<Crypto />} />    
+                <Route path="/search/:id" element={<DetailCrypto />} />    
               </Routes>
             </div>
           </Provider>
