@@ -4,7 +4,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import axios from "axios";
+// Redux
+import { useDispatch } from "react-redux";
+import { getUserAction } from "../redux/actions/userActions";
 
 const style = {
   position: "absolute",
@@ -24,12 +26,10 @@ const Login = () => {
   const handleClose = () => setOpen(false);
 
   const [globalUser, setGlobalUser] = useState({});
-  // objectID
 
   const [formData, setFormData] = useState({
-    user: "",
     email: "",
-    pass: "",
+    password: "",
   });
 
   const handleOnChange = (e) => {
@@ -39,23 +39,12 @@ const Login = () => {
     });
   };
 
-  const urlWWW = `http://localhost:4000/api/login/`;
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("probando");
-    try {
-      const { data } = await axios.post(urlWWW, {
-        email: formData.email,
-        password: formData.pass,
-      });
-
-      setGlobalUser(data);
-      console.log(globalUser);
-    } catch (err) {
-      console.log(err);
-    }
+    dispatch(getUserAction(formData));
 
     handleClose();
   };
@@ -95,10 +84,10 @@ const Login = () => {
                 value={formData.email}
               />
               <input
-                name="pass"
+                name="password"
                 type="password"
                 onChange={handleOnChange}
-                value={formData.pass}
+                value={formData.password}
               />
               <button>Login</button>
             </form>

@@ -23,12 +23,6 @@ const Register = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [inputUser, setInputUser] = useState("");
-  const [username, setUsername] = useState("");
-  const [inputMail, setInputMail] = useState("");
-  const [mail, setMail] = useState("");
-  const [inputPass, setInputPass] = useState("");
-  const [pass, setPass] = useState("");
   const [globalUser, setGlobalUser] = useState({});
 
   const [formData, setFormData] = useState({
@@ -37,24 +31,14 @@ const Register = () => {
     pass: "",
   });
 
-  const handleChangeUser = (event) => {
-    setInputUser(event.target.value);
+  const handleOnChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
-
-  const handleChangeMail = (event) => {
-    setInputMail(event.target.value);
-  };
-
-  const handleChangePass = (event) => {
-    setInputPass(event.target.value);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    setUsername(inputUser);
-    setMail(inputMail);
-    setPass(inputPass);
   };
   //set Username with Redux
 
@@ -64,9 +48,9 @@ const Register = () => {
   const handleLogin = () => {
     (async () => {
       const { data } = await axios.post(urlWWW, {
-        userName: username,
-        email: mail,
-        password: pass,
+        userName: formData.user,
+        email: formData.mail,
+        password: formData.pass,
       });
 
       if (data.results) {
@@ -97,14 +81,6 @@ const Register = () => {
             Register
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <div>
-              Username: {username}
-              <br />
-              E-Mail: {mail}
-              <Button component={Paper} onClick={handleLogin}>
-                Register
-              </Button>
-            </div>
             <form
               onSubmit={handleSubmit}
               style={{
@@ -114,20 +90,23 @@ const Register = () => {
             >
               <input
                 type="text"
-                onChange={handleChangeUser}
-                value={inputUser}
+                name="user"
+                onChange={handleOnChange}
+                value={formData.user}
                 placeholder="username"
               />
               <input
-                type="text"
-                onChange={handleChangeMail}
-                value={inputMail}
+                name="email"
+                type="email"
+                onChange={handleOnChange}
+                value={formData.email}
                 placeholder="email"
               />
               <input
+                name="pass"
                 type="password"
-                onChange={handleChangePass}
-                value={inputPass}
+                onChange={handleOnChange}
+                value={formData.pass}
                 placeholder="password"
               />
               <button>Set</button>

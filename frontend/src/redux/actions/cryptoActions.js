@@ -6,13 +6,12 @@ export const CRYPTO_ACTION_ERROR = "CRYPTO_ACTION_ERROR";
 
 const url = "http://localhost:4000/api";
 
-
 export function getCryptoAction(id) {
   return async (dispatch) => {
     dispatch(getCrypto());
 
     try {
-    const response =  await Axios.get(`${url}/${id}`);
+      const response = await Axios.get(`${url}/${id}`);
       dispatch(getCryptoSuccess(response.data));
     } catch (error) {
       dispatch(getCryptoError());

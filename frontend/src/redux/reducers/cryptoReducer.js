@@ -14,15 +14,21 @@ function cryptoReducer(state = initialState, action) {
   switch (action.type) {
     case CRYPTO_ACTION:
       return {
-        crypto: {}, error: false,  currency: true, 
+        crypto: {},
+        error: false,
+        currency: true,
       };
     case CRYPTO_ACTION_SUCCESS:
       return {
-        crypto: action.payload, error: false,  currency: false, 
+        crypto: action.payload,
+        error: false,
+        currency: false,
       };
     case CRYPTO_ACTION_ERROR:
       return {
-        crypto: {}, error: true,  currency: false, 
+        crypto: {},
+        error: true,
+        currency: false,
       };
     default:
       return state;

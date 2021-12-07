@@ -9,10 +9,15 @@ export function getUserAction(user) {
     dispatch(getUser());
 
     try {
-      await Axios.get("http://localhost:4000/user", user);
-      dispatch(getUserSuccess(user));
+      const { data } = await Axios.post(
+        "http://localhost:4000/api/login",
+        user
+      );
+      dispatch(getUserSuccess(data));
+      console.log(data);
     } catch (error) {
       dispatch(getUserError(true));
+      console.log(error);
     }
   };
 }
