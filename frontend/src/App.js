@@ -92,7 +92,7 @@ function App() {
                 <Route path="/exchange" element={<Exchange />} />
                 <Route path="/wallet" element={<Wallet />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/:id" element={<Crypto />} />    
+                <Route path="/search/:id" element={<Crypto />} />    
               </Routes>
             </div>
           </Provider>

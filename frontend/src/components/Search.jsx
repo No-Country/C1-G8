@@ -14,7 +14,7 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Navigate(`/${search}`);
+    Navigate(`/search/${search}`);
   };
 
   return (
