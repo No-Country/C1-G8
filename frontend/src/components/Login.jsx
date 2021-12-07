@@ -39,27 +39,20 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const urlWWW = `http://localhost:4000/api/login/`;
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("handleLogin");
-    console.log(`email: ${mail}`);
+    console.log("probando");
     try {
-      (async () => {
-        const { data } = await axios.post(urlWWW, {
-          email: mail,
-          password: pass,
-        });
-        console.log(pass);
-        if (data.res) {
-          setGlobalUser(data.res);
-          console.log(data.res);
-          console.log(data);
-        } else {
-          setGlobalUser(data);
-          console.log(data);
-        }
-      })();
+      const { data } = await axios.post(urlWWW, {
+        email: formData.email,
+        password: formData.pass,
+      });
+
+      setGlobalUser(data);
+      console.log(globalUser);
     } catch (err) {
       console.log(err);
     }
@@ -68,7 +61,6 @@ const Login = () => {
   };
   //set Username with Redux
 
-  const urlWWW = `http://localhost:4000/api/login/`;
   // "https://localhost/login/:id"
 
   //connect get consume fetch Username from Store
@@ -97,11 +89,13 @@ const Login = () => {
               }}
             >
               <input
+                name="email"
                 type="text"
                 onChange={handleOnChange}
                 value={formData.email}
               />
               <input
+                name="pass"
                 type="password"
                 onChange={handleOnChange}
                 value={formData.pass}

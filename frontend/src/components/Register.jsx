@@ -31,6 +31,12 @@ const Register = () => {
   const [pass, setPass] = useState("");
   const [globalUser, setGlobalUser] = useState({});
 
+  const [formData, setFormData] = useState({
+    user: "",
+    email: "",
+    pass: "",
+  });
+
   const handleChangeUser = (event) => {
     setInputUser(event.target.value);
   };
