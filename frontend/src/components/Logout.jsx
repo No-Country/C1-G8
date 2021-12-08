@@ -4,6 +4,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
+// Redux
+import { useDispatch } from "react-redux";
+import { logoutAction } from "../redux/actions/userActions";
 
 const style = {
   position: "absolute",
@@ -22,6 +25,12 @@ const Logout = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logoutAction());
+    handleClose();
+  };
+
   return (
     <div>
       <Button component={Paper} onClick={handleOpen}>
@@ -39,6 +48,14 @@ const Logout = () => {
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             You want to close your session?
+          </Typography>
+          <Typography id="modal-modal-description" variant="h6" component="h2">
+            <Button component={Paper} onClick={handleLogout}>
+              Logout
+            </Button>
+            <Button component={Paper} onClick={handleClose}>
+              Cancel
+            </Button>
           </Typography>
         </Box>
       </Modal>

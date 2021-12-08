@@ -5,11 +5,15 @@ import {
   USER_REGISTER,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_ERROR,
+  USER_LOGOUT,
+  USER_LOGOUT_SUCCESS,
+  USER_LOGOUT_ERROR,
 } from "../actions/userActions";
 
 const initialState = {
-  user: {},
+  login: {},
   register: {},
+  logout: {},
   error: null,
 };
 
@@ -22,7 +26,7 @@ function userReducer(state = initialState, action) {
     case USER_ACTION_SUCCESS:
       return {
         ...state,
-        user: action.payload,
+        login: action.payload,
       };
     case USER_ACTION_ERROR:
       return {
@@ -39,6 +43,20 @@ function userReducer(state = initialState, action) {
         register: action.payload,
       };
     case USER_REGISTER_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case USER_LOGOUT:
+      return {
+        ...state,
+      };
+    case USER_LOGOUT_SUCCESS:
+      return {
+        ...state,
+        logout: action.payload,
+      };
+    case USER_LOGOUT_ERROR:
       return {
         ...state,
         error: action.payload,

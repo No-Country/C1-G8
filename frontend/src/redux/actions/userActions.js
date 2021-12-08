@@ -8,6 +8,10 @@ export const USER_REGISTER = "USER_REGISTER";
 export const USER_REGISTER_SUCCESS = "USER_REGISTER_SUCCESS";
 export const USER_REGISTER_ERROR = "USER_REGISTER_ERROR";
 
+export const USER_LOGOUT = "USER_LOGOUT";
+export const USER_LOGOUT_SUCCESS = "USER_LOGOUT_SUCCESS";
+export const USER_LOGOUT_ERROR = "USER_LOGOUT_ERROR";
+
 export function getUserAction(user) {
   return async (dispatch) => {
     dispatch(getUser());
@@ -30,9 +34,9 @@ const getUser = () => ({
   type: USER_ACTION,
 });
 
-const getUserSuccess = (user) => ({
+const getUserSuccess = (login) => ({
   type: USER_ACTION_SUCCESS,
-  payload: user,
+  payload: login,
 });
 
 const getUserError = (error) => ({
@@ -46,7 +50,7 @@ export function setUserAction(user) {
 
     try {
       const { data } = await Axios.post(
-        "http://localhost:4000/api/create",
+        "http://localhost:4000/api/register",
         user
       );
       dispatch(setUserSuccess(data));
@@ -62,12 +66,44 @@ const setUser = () => ({
   type: USER_REGISTER,
 });
 
-const setUserSuccess = (user) => ({
+const setUserSuccess = (register) => ({
   type: USER_REGISTER_SUCCESS,
-  payload: user,
+  payload: register,
 });
 
 const setUserError = (error) => ({
   type: USER_REGISTER_ERROR,
+  payload: error,
+});
+
+export function logoutAction(user) {
+  return async (dispatch) => {
+    dispatch(logoutUser());
+
+    try {
+      const { data } = await Axios.delete(
+        "http://localhost:4000/api/logout",
+        user
+      );
+      dispatch(logoutSuccess(data));
+      console.log(data);
+    } catch (error) {
+      dispatch(logoutError(true));
+      console.log(error);
+    }
+  };
+}
+
+const logoutUser = () => ({
+  type: USER_LOGOUT,
+});
+
+const logoutSuccess = (logout) => ({
+  type: USER_LOGOUT_SUCCESS,
+  payload: logout,
+});
+
+const logoutError = (error) => ({
+  type: USER_LOGOUT_ERROR,
   payload: error,
 });
