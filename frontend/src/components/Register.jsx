@@ -4,7 +4,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import axios from "axios";
+// Redux
+import { useDispatch } from "react-redux";
+import { setUserAction } from "../redux/actions/userActions";
 
 const style = {
   position: "absolute",
@@ -26,7 +28,7 @@ const Register = () => {
   const [globalUser, setGlobalUser] = useState({});
 
   const [formData, setFormData] = useState({
-    user: "",
+    userName: "",
     email: "",
     pass: "",
   });
@@ -37,33 +39,16 @@ const Register = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
-  //set Username with Redux
 
-  const urlWWW = `https://localhost/create/`;
-  // "https://localhost/create"
-
-  const handleLogin = () => {
-    (async () => {
-      const { data } = await axios.post(urlWWW, {
-        userName: formData.user,
-        email: formData.mail,
-        password: formData.pass,
-      });
-
-      if (data.results) {
-        setGlobalUser(data.results);
-      } else {
-        setGlobalUser(data);
-      }
-    })();
+    dispatch(setUserAction(formData));
 
     handleClose();
   };
-
-  //connect get consume fetch Username from Store
 
   return (
     <div>
@@ -90,9 +75,9 @@ const Register = () => {
             >
               <input
                 type="text"
-                name="user"
+                name="userName"
                 onChange={handleOnChange}
-                value={formData.user}
+                value={formData.userName}
                 placeholder="username"
               />
               <input
@@ -109,7 +94,7 @@ const Register = () => {
                 value={formData.pass}
                 placeholder="password"
               />
-              <button>Set</button>
+              <button>Register</button>
             </form>
           </Typography>
         </Box>

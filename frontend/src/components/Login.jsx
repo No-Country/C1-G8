@@ -48,11 +48,6 @@ const Login = () => {
 
     handleClose();
   };
-  //set Username with Redux
-
-  // "https://localhost/login/:id"
-
-  //connect get consume fetch Username from Store
 
   return (
     <div>
