@@ -11,7 +11,6 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import Exchange from "./components/Exchange";
 import Home from "./components/Home";
 import IconButton from "@mui/material/IconButton";
-import Navbar from "./components/Navbar";
 import { Provider } from "react-redux";
 import React from "react";
 import Wallet from "./components/Wallet";
@@ -22,6 +21,7 @@ import '@popperjs/core'
 import { Details } from "./page/Details";
 import { SearchDetails } from "./page/SearchDetails";
 import { DataProvider } from "./context/DataProvider";
+import { NavMenu } from "./components/NavMenu";
 
 // Redux
 
@@ -91,7 +91,7 @@ function App() {
             <DataProvider>
               <div className="app">
                 <ThemeMode />
-                <Navbar />
+                <NavMenu />
                 <Routes>
                   <Route exact path="/" element={<Home />} />
                   <Route path="/board" element={<Board />} />

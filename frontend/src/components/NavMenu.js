@@ -1,12 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Login from "./Login";
-import Logout from "./Logout";
-import Register from "./Register";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
 
-const Navbar = () => {
+
+export const NavMenu = () => {
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3`} id="mainNav">
             <div className="container px-4 px-lg-5">
@@ -22,5 +18,3 @@ const Navbar = () => {
         </nav>
   );
 };
-
-export default Navbar;
