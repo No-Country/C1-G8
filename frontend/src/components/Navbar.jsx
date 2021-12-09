@@ -8,101 +8,18 @@ import Box from "@mui/material/Box";
 
 const Navbar = () => {
   return (
-    <nav
-      style={{
-        display: "flex",
-        height: "85px",
-        alignItems: "center",
-        justifyContent: "space-around",
-        margin: "10px 0px 20px",
-      }}
-    >
-      <div
-        style={{
-          width: "80px",
-        }}
-      ></div>
-
-      <div>
-        <Box component={Paper}>
-          <Link to="/">
-            <div
-              style={{
-                width: "80px",
-                height: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              Home.img
+    <nav className={`navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3`} id="mainNav">
+            <div className="container px-4 px-lg-5">
+                <Link className="navbar-brand" to='/'>Home</Link>
+                <button className="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
+                <div className="collapse navbar-collapse" id="navbarResponsive">
+                    <ul className="navbar-nav ms-auto my-2 my-lg-0">
+                        <li className="nav-item"><Link className="nav-link" to='/board'>Board</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to='/about'>About</Link></li>
+                    </ul>
+                </div>
             </div>
-          </Link>
-        </Box>
-        <Box component={Paper}>
-          <div
-            style={{
-              width: "80px",
-              height: "40px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Link to="/board">Board</Link>
-          </div>
-        </Box>
-      </div>
-      <div>
-        <Box component={Paper}>
-          <div
-            style={{
-              width: "80px",
-              height: "40px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Link to="/exchange">Exchange</Link>
-          </div>
-        </Box>
-
-        <Box component={Paper}>
-          <Link to="/wallet">
-            <div
-              style={{
-                width: "80px",
-                height: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              WallET
-            </div>
-          </Link>
-        </Box>
-      </div>
-      <Box component={Paper}>
-        <div
-          style={{
-            width: "80px",
-            height: "40px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Link to="/about">About</Link>
-        </div>
-      </Box>
-      <div>
-        <Register />
-        <Login />
-        <Logout />
-      </div>
-    </nav>
+        </nav>
   );
 };
 

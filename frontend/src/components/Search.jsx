@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Search = () => {
   const Navigate = useNavigate();
   const [search, setSearch] = React.useState("");
-  
+
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
@@ -18,35 +18,20 @@ const Search = () => {
   };
 
   return (
-    <div>
-      <FormControl
-        component={Paper}
-        onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <TextField
-          id="standard-basic"
-          label="Standard"
-          variant="outlined"
-          type="text"
-          onChange={handleChange}
-          value={search}
-        />
-      </FormControl>
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <input type="text" onChange={handleChange} value={search} />
-        <button>Search</button>
-      </form>
-    </div>
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+      className='p-4 m-4'
+    >
+      <div className='form-group'>
+        <input type="text" class="form-control" placeholder='Search cryptocurrencies...' onChange={handleChange} value={search} />
+        <button className='btn btn-primary'>Search</button>
+      </div>
+    </form>
+
   );
 };
 

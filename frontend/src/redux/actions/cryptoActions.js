@@ -12,7 +12,11 @@ export function getCryptoAction(id) {
 
     try {
       const response = await Axios.get(`${url}/${id}`);
-      dispatch(getCryptoSuccess(response.data));
+      if(response.data === null){
+        dispatch(getCryptoError())
+      }else{
+        dispatch(getCryptoSuccess(response.data));
+      }
     } catch (error) {
       dispatch(getCryptoError());
     }
@@ -28,6 +32,6 @@ const getCryptoSuccess = (crypto) => ({
   payload: crypto,
 });
 
-const getCryptoError = (error) => ({
+const getCryptoError = () => ({
   type: CRYPTO_ACTION_ERROR,
 });
