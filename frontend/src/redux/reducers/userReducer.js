@@ -11,8 +11,9 @@ import {
 } from "../actions/userActions";
 
 const initialState = {
-  login: {},
   register: {},
+  login: {},
+  logged: false,
   logout: {},
   error: null,
 };
@@ -27,6 +28,7 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         login: action.payload,
+        logged: true,
       };
     case USER_ACTION_ERROR:
       return {
@@ -54,6 +56,8 @@ function userReducer(state = initialState, action) {
     case USER_LOGOUT_SUCCESS:
       return {
         ...state,
+        login: {},
+        logged: false,
         logout: action.payload,
       };
     case USER_LOGOUT_ERROR:

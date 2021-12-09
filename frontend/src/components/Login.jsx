@@ -25,8 +25,6 @@ const Login = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [globalUser, setGlobalUser] = useState({});
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
