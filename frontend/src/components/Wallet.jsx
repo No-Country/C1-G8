@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useEffect, useState } from "react";
 import axios from "axios";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -10,11 +10,12 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
+
 const Wallet = () => {
   const [coins, setCoins] = useState([]);
-
   const [userId, setUserId] = useState("");
-
+  
+  
   const urlWWW = `http://localhost:4000/api/cryptoview/${userId}/`;
   // "https://localhost/cryptoview/:id"
 
@@ -22,6 +23,7 @@ const Wallet = () => {
     setUserId(event.target.value);
   };
 
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -37,6 +39,7 @@ const Wallet = () => {
     })();
   };
 
+  
   return (
     <>
       <Box component={Paper}>

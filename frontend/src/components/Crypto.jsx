@@ -1,8 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Crypto = ({
-  image,
+  num,
+  id,
   symbol,
+  image,
   name,
   price,
   change,
@@ -12,6 +15,7 @@ const Crypto = ({
   return (
     <>
       <tr style={{ backgroundColor: "#DEEEED" }}>
+        <td>{num}</td>
         <td>{symbol}</td>
         <td>
           <img src={image} alt={name} style={{ width: "60px" }} />
@@ -21,6 +25,7 @@ const Crypto = ({
         <td style={change > 0 ? { color: "green" } : { color: "red" }}>
           {change}
         </td>
+        <td><Link to={`/coins/${id}`} className='btn btn-success'>Details</Link></td>
       </tr>
     </>
   );
