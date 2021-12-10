@@ -14,7 +14,7 @@ export const NavMenu = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (search === "") {
-        Swal.fire("Error", "Please enter a search term", "error");
+      Swal.fire("Error", "Please enter a search term", "error");
     } else {
       Navigate(`/search/${search}`);
       setSearch("");
@@ -49,6 +49,16 @@ export const NavMenu = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/about">
                 About
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/exchange">
+                Exchange
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/wallet">
+                Wallet
               </Link>
             </li>
           </ul>

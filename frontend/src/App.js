@@ -1,31 +1,32 @@
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.js'
-import '@popperjs/core'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.js";
+import "@popperjs/core";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
-
-import About from "./components/About";
-import Board from "./page/Board";
+import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import { DataProvider } from "./context/DataProvider";
-import { Details } from "./page/Details";
+
+import React from "react";
+
+import { NavMenu } from "./components/NavMenu";
+import Wallet from "./components/Wallet";
+import About from "./components/About";
 import Exchange from "./components/Exchange";
 import Home from "./components/Home";
-import IconButton from "@mui/material/IconButton";
-import { NavMenu } from "./components/NavMenu";
-import { Provider } from "react-redux";
-import React from "react";
+
+import { DataProvider } from "./context/DataProvider";
+
+import { Details } from "./page/Details";
+import Board from "./page/Board";
 import { SearchDetails } from "./page/SearchDetails";
-import Wallet from "./components/Wallet";
-import store from "./redux/store";
 
 //redux
-
-
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
