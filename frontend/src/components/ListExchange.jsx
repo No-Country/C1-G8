@@ -1,19 +1,7 @@
-import Crypto from "./Crypto";
-import React, { useEffect } from "react";
-import { getWalletAction } from "../redux/actions/walletActions";
+import CryptoExchange from "./CryptoExchange";
+import React from "react";
 
-import { useDispatch, useSelector } from "react-redux";
-
-const WalletCoins = ({ coins, id }) => {
-  const wallet = useSelector((state) => state.wallet);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getWalletAction(id));
-    console.log(id);
-  }, []);
-
+const ListCoins = ({ coins }) => {
   return (
     <>
       <table class="table table-responsive table-dark table-striped">
@@ -24,14 +12,14 @@ const WalletCoins = ({ coins, id }) => {
             <td>Image</td>
             <td>Name</td>
             <td>Price</td>
-            <td>Amount</td>
-            <td>Total</td>
+            <td>24h Change</td>
+            <td>Purchase Coin</td>
           </tr>
         </thead>
         <tbody>
           {coins.map((coin, index) => {
             return (
-              <Crypto
+              <CryptoExchange
                 key={coin.symbol}
                 id={coin.id}
                 num={index + 1}
@@ -39,8 +27,7 @@ const WalletCoins = ({ coins, id }) => {
                 image={coin.image}
                 name={coin.name}
                 price={coin.current_price}
-                amount={wallet.coins.amount}
-                total={wallet.coins.amount * coin.current_price}
+                change={coin.price_change_percentage_24h}
               />
             );
           })}
@@ -50,4 +37,4 @@ const WalletCoins = ({ coins, id }) => {
   );
 };
 
-export default WalletCoins;
+export default ListCoins;

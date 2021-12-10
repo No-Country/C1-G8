@@ -12,16 +12,16 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 
 import React from "react";
 
-import { NavMenu } from "./components/NavMenu";
-import Wallet from "./components/Wallet";
-import About from "./components/About";
-import Exchange from "./components/Exchange";
 import Home from "./components/Home";
+import About from "./components/About";
+import { NavMenu } from "./components/NavMenu";
 
 import { DataProvider } from "./context/DataProvider";
 
-import { Details } from "./page/Details";
 import Board from "./page/Board";
+import Wallet from "./page/Wallet";
+import Exchange from "./page/Exchange";
+import { Details } from "./page/Details";
 import { SearchDetails } from "./page/SearchDetails";
 
 //redux
