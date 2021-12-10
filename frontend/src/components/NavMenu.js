@@ -3,7 +3,7 @@ import React from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 // Redux
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
 import Register from "./Register";
 import Login from "./Login";
 import Logout from "./Logout";
@@ -12,7 +12,7 @@ export const NavMenu = () => {
   const Navigate = useNavigate();
   const [search, setSearch] = React.useState("");
 
-  const logged = useSelector((state) => state.user.logged);
+  //const logged = useSelector((state) => state.user.logged);
 
   const handleChange = (event) => {
     setSearch(event.target.value.toLowerCase());
@@ -58,7 +58,7 @@ export const NavMenu = () => {
                 About
               </Link>
             </li>
-            {logged && (
+            {/* {logged && (
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/exchange">
@@ -71,7 +71,7 @@ export const NavMenu = () => {
                   </Link>
                 </li>
               </>
-            )}
+            )} */}
           </ul>
 
           <form class="d-flex" onSubmit={handleSubmit}>
@@ -87,7 +87,7 @@ export const NavMenu = () => {
               Search
             </button>
           </form>
-          {!logged ? (
+          {/* {!logged ? (
             <>
               <li className="nav-item">
                 <button class="btn" type="submit">
@@ -108,7 +108,7 @@ export const NavMenu = () => {
                 </button>
               </li>
             </>
-          )}
+          )} */}
         </div>
       </div>
     </nav>

@@ -8,7 +8,7 @@ const ListCoins = ({coins}) => {
 
   return (
     <>
-      <table class="table table-responsive table-dark table-striped">
+      {/* <table class="table table-dark table-striped w-100">
         <thead>
           <tr>
             <td>#</td>
@@ -23,7 +23,7 @@ const ListCoins = ({coins}) => {
         <tbody>
 
           {
-            coins.map((coin, index) => {
+            coins && coins.map((coin, index) => {
               return (
                 <Crypto
                   key={coin.symbol}
@@ -40,7 +40,16 @@ const ListCoins = ({coins}) => {
           }
           
         </tbody>
-      </table>
+      </table> */}
+      <div className="row">
+        {
+          coins && coins.map(coin=>{
+            return(
+              <Crypto id={coin.id} image={coin.image} name={coin.name} price={coin.current_price} key={coin.id} />
+            )
+          })
+        }
+      </div>
     </>
   
   );

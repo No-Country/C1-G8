@@ -5,9 +5,9 @@ import {
 } from "../actions/coinsActions";
 
 const initialState = {
-  coins: [],
-  error: null,
-  currency: null,
+  coins: null,
+  error: false,
+  currency: false,
 };
 
 function coinsReducer(state = initialState, action) {
@@ -15,16 +15,23 @@ function coinsReducer(state = initialState, action) {
     case COINS_ACTION:
       return {
         ...state,
+        coins:null,
+        error:false,
+        currency:true,
       };
     case COINS_ACTION_SUCCESS:
       return {
         ...state,
         coins: action.payload,
+        error:false,
+        currency:false,
       };
     case COINS_ACTION_ERROR:
       return {
         ...state,
-        error: action.payload,
+        coins:null,
+        error: true,
+        currency:false
       };
     default:
       return state;

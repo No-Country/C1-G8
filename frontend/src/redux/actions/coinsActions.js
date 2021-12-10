@@ -14,7 +14,7 @@ export function getCoinsAction(page) {
     try {
     const response =  await Axios.get(`${url}/coinslist?page=${page}`);
     if (response.data === null) {
-      dispatch(getCoinsError)
+      dispatch(getCoinsError())
     } else {
       dispatch(getCoinsSuccess(response.data));
     }
@@ -34,7 +34,6 @@ const getCoinsSuccess = (coins) => ({
   payload: coins,
 });
 
-const getCoinsError = (error) => ({
+const getCoinsError = () => ({
   type: COINS_ACTION_ERROR,
-  payload: error,
 });

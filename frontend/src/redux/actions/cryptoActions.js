@@ -32,6 +32,6 @@ const getCryptoSuccess = (crypto) => ({
   payload: crypto,
 });
 
-const getCryptoError = (error) => ({
+const getCryptoError = () => ({
   type: CRYPTO_ACTION_ERROR,
 });
