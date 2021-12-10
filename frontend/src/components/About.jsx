@@ -9,7 +9,7 @@ import patricio from "../image/pato.jpg";
 const About = () => {
   return (
     <div className="container">
-      <div className="  d-flex justify-content-center flex-column p-3 ">
+      <div className="d-flex justify-content-center flex-column p-3">
         <div className="text-center">
           <h1>Project AppCrypto</h1>
           <h2>About project</h2>
@@ -25,7 +25,7 @@ const About = () => {
         </div>
         <div className="row text-center">
           <div className="col-12 col-md-6 col-lg-4 mb-2">
-            <div class="card">
+            <div class="card" style={{height:'450px'}}>
               <img src={andrea} class="card-img-top " alt="andrea" />
               <div class="card-body">
                 <h3 class="card-title text-dark ">Andrea Largo Castro </h3>
@@ -34,7 +34,7 @@ const About = () => {
             </div>
           </div>
           <div className="col-12 col-md-6 col-lg-4 mb-2">
-            <div class="card">
+            <div class="card" style={{height:'450px'}}>
               <img src={German} class="card-img-top" alt="German" />
               <div class="card-body">
                 <h3 class="card-title text-dark ">German Rodriguez </h3>
@@ -43,7 +43,7 @@ const About = () => {
             </div>
           </div>
           <div className="col-12 col-md-6 col-lg-4 mb-2">
-            <div class="card">
+            <div class="card" style={{height:'450px'}}>
               <img src={Hugo} class="card-img-top" alt="Hugo" />
               <div class="card-body">
                 <h3 class="card-title text-dark ">Hugo Tatarinoff</h3>
@@ -52,19 +52,19 @@ const About = () => {
             </div>
           </div>
           <div className="col-12 col-md-6 col-lg-4 mb-2">
-            <div class="card">
-              <img src={megas} class="card-img-top" alt="Mégas" />
+            <div class="card" style={{height:'450px'}}>
+              <img src={patricio} class="card-img-top" alt="pato" />
               <div class="card-body">
-                <h3 class="card-title text-dark ">Mégas Vanzillotta </h3>
+                <h3 class="card-title text-dark ">Patricio Solana</h3>
                 <h5 class="card-title text-dark ">Developer</h5>
               </div>
             </div>
           </div>
           <div className="col-12 col-md-6 col-lg-4 mb-2">
-            <div class="card">
-              <img src={patricio} class="card-img-top" alt="pato" />
+            <div class="card" style={{height:'450px'}}>
+              <img src={megas} class="card-img-top" alt="Mégas" />
               <div class="card-body">
-                <h3 class="card-title text-dark ">Patricio Solana</h3>
+                <h3 class="card-title text-dark ">Mégas Vanzillotta </h3>
                 <h5 class="card-title text-dark ">Developer</h5>
               </div>
             </div>

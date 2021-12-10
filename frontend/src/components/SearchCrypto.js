@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const SearchCrypto = ({ crypto }) => {
     return (
-        <div className="card mt-4 w-100 w-lg-50 p-2" >
+        <div className="card mt-4 mw-100 p-2" style={{width:'500px'}}>
             <h1 className='p-4'>{crypto.name}</h1>
             <img src={crypto.image && crypto.image.large} className="card-img-top" alt={crypto.id} />
             <div className="card-body">
