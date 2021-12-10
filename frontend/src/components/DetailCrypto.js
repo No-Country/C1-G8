@@ -4,7 +4,7 @@ import React from "react";
 const DetailCrypto = ({ crypto }) => {
 
     return (
-        <div className="card mt-4 w-50 p-2" >
+        <div className="card mt-4 w-100 w-lg-50 p-2" >
             <h1 className='p-4 text-dark'>{crypto.name}</h1>
             <img src={crypto.image && crypto.image.large} className="card-img-top" alt={crypto.id} />
             <div className="card-body">

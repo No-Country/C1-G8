@@ -29,52 +29,16 @@ export const NavMenu = () => {
   };
 
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <Link className="navbar-brand" to="/">
-          Home
-        </Link>
-        <button
-          class="navbar-toggler navbar-toggler-right "
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="navbarResponsive"
-          aria-controls="navbarResponsive"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarResponsive">
-          <ul className="navbar-nav me-auto my-2 my-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/board">
-                Board
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                About
-              </Link>
-            </li>
-            {/* {logged && (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/exchange">
-                    Exchange
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/wallet">
-                    Wallet
-                  </Link>
-                </li>
-              </>
-            )} */}
-          </ul>
-
-          <form class="d-flex" onSubmit={handleSubmit}>
+    <nav className={`navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3`} id="mainNav">
+            <div className="container px-4 px-lg-5">
+                <Link className="navbar-brand" to='/'>Home</Link>
+                <button className="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
+                <div className="collapse navbar-collapse" id="navbarResponsive">
+                    <ul className="navbar-nav ms-auto my-2 my-lg-0">
+                        <li className="nav-item"><Link className="nav-link" to='/board'>Board</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to='/about'>About</Link></li>
+                    </ul>
+                    <form class="d-flex" onSubmit={handleSubmit}>
             <input
               class="form-control me-2"
               type="text"
@@ -87,30 +51,9 @@ export const NavMenu = () => {
               Search
             </button>
           </form>
-          {/* {!logged ? (
-            <>
-              <li className="nav-item">
-                <button class="btn" type="submit">
-                  <Register />
-                </button>
-              </li>
-              <li>
-                <button class="btn" type="submit">
-                  <Login />
-                </button>
-              </li>
-            </>
-          ) : (
-            <>
-              <li>
-                <button class="btn" type="submit">
-                  <Logout />
-                </button>
-              </li>
-            </>
-          )} */}
-        </div>
-      </div>
-    </nav>
+                </div>
+            </div>
+        </nav>
+   
   );
 };
