@@ -9,21 +9,21 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+// Redux
+import { useSelector } from "react-redux";
 
 const Exchange = () => {
-  const [userId, setUserId] = useState("");
   const [cryptoId, setCryptoId] = useState("");
   const [cryptoUnits, setCryptoUnits] = useState("");
   const [coin, setCoin] = useState([]);
+
+  const userId = useSelector((state) => state.user.login.id);
+  const token = useSelector((state) => state.user.login.token);
 
   const url = `https://localhost/editwallet/${userId}/${cryptoId}`;
   // "https://localhost/editwallet/:id/:cryptoid"
   const url2 = `https://localhost/cryptobuy/${userId}`;
   // "https://localhost/cryptobuy/:id"
-
-  const handleChangeUser = (event) => {
-    setUserId(event.target.value);
-  };
 
   const handleChangeCrypto = (event) => {
     setCryptoId(event.target.value);
@@ -71,12 +71,7 @@ const Exchange = () => {
         }}
       >
         edit
-        <input
-          type="text"
-          placeholder="userId"
-          onChange={handleChangeUser}
-          value={userId}
-        />
+        <input type="text" placeholder="userId" value={userId} />
         <input
           type="text"
           placeholder="cryptoId"

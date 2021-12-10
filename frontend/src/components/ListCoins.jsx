@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
 import Crypto from "./Crypto";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -9,12 +7,14 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
 import { getCoinsAction } from "../redux/actions/coinsActions";
 
 const ListCoins = () => {
   const dispatch = useDispatch();
   const coins = useSelector((state) => state.coins.coins);
-  
+
   useEffect(() => {
     dispatch(getCoinsAction());
   }, [dispatch]);
@@ -80,26 +80,27 @@ const ListCoins = () => {
           </tr>
         </thead>
         <tbody>
-         {coins && coins.map(
-            ({
-              image,
-              symbol,
-              name,
-              current_price,
-              price_change_percentage_24h,
-            }) => {
-              return (
-                <Crypto
-                  key={symbol}
-                  image={image}
-                  symbol={symbol}
-                  name={name}
-                  price={current_price}
-                  change={price_change_percentage_24h}
-                />
-              );
-            }
-          )}
+          {coins &&
+            coins.map(
+              ({
+                image,
+                symbol,
+                name,
+                current_price,
+                price_change_percentage_24h,
+              }) => {
+                return (
+                  <Crypto
+                    key={symbol}
+                    image={image}
+                    symbol={symbol}
+                    name={name}
+                    price={current_price}
+                    change={price_change_percentage_24h}
+                  />
+                );
+              }
+            )}
         </tbody>
       </table>
     </>
