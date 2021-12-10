@@ -50,12 +50,22 @@ const Logout = () => {
             You want to close your session?
           </Typography>
           <Typography id="modal-modal-description" variant="h6" component="h2">
-            <Button component={Paper} onClick={handleLogout}>
-              Logout
-            </Button>
-            <Button component={Paper} onClick={handleClose}>
-              Cancel
-            </Button>
+            <div>
+              <button
+                class="btn btn-outline-success"
+                component={Paper}
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+              <button
+                class="btn btn-outline-danger"
+                component={Paper}
+                onClick={handleClose}
+              >
+                Cancel
+              </button>
+            </div>
           </Typography>
         </Box>
       </Modal>

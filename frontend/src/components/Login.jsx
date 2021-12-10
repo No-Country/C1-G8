@@ -66,23 +66,33 @@ const Login = () => {
             <form
               onSubmit={handleSubmit}
               style={{
-                display: "flex",
+                display: "block",
                 justifyContent: "center",
               }}
             >
-              <input
-                name="email"
-                type="text"
-                onChange={handleOnChange}
-                value={formData.email}
-              />
-              <input
-                name="password"
-                type="password"
-                onChange={handleOnChange}
-                value={formData.password}
-              />
-              <button>Login</button>
+              <div>
+                <input
+                  class="form-control me-2"
+                  name="email"
+                  type="text"
+                  onChange={handleOnChange}
+                  value={formData.email}
+                  placeholder="email"
+                />
+                <input
+                  class="form-control me-2"
+                  name="password"
+                  type="password"
+                  onChange={handleOnChange}
+                  value={formData.password}
+                  placeholder="password"
+                />{" "}
+              </div>
+              <div>
+                <button class="btn btn-outline-success" type="submit">
+                  Login
+                </button>
+              </div>
             </form>
           </Typography>
         </Box>

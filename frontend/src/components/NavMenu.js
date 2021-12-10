@@ -2,10 +2,17 @@ import { Link } from "react-router-dom";
 import React from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+// Redux
+import { useSelector } from "react-redux";
+import Register from "./Register";
+import Login from "./Login";
+import Logout from "./Logout";
 
 export const NavMenu = () => {
   const Navigate = useNavigate();
   const [search, setSearch] = React.useState("");
+
+  const logged = useSelector((state) => state.user.logged);
 
   const handleChange = (event) => {
     setSearch(event.target.value.toLowerCase());
@@ -51,17 +58,22 @@ export const NavMenu = () => {
                 About
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/exchange">
-                Exchange
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/wallet">
-                Wallet
-              </Link>
-            </li>
+            {logged && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/exchange">
+                    Exchange
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/wallet">
+                    Wallet
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
+
           <form class="d-flex" onSubmit={handleSubmit}>
             <input
               class="form-control me-2"
@@ -75,6 +87,28 @@ export const NavMenu = () => {
               Search
             </button>
           </form>
+          {!logged ? (
+            <>
+              <li className="nav-item">
+                <button class="btn" type="submit">
+                  <Register />
+                </button>
+              </li>
+              <li>
+                <button class="btn" type="submit">
+                  <Login />
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <button class="btn" type="submit">
+                  <Logout />
+                </button>
+              </li>
+            </>
+          )}
         </div>
       </div>
     </nav>

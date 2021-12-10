@@ -50,7 +50,7 @@ export function setUserAction(user) {
 
     try {
       const { data } = await Axios.post(
-        "http://localhost:4000/api/register",
+        "http://localhost:4000/api/create",
         user
       );
       dispatch(setUserSuccess(data));

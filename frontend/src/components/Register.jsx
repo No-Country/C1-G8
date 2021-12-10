@@ -71,28 +71,37 @@ const Register = () => {
                 justifyContent: "center",
               }}
             >
-              <input
-                type="text"
-                name="userName"
-                onChange={handleOnChange}
-                value={formData.userName}
-                placeholder="username"
-              />
-              <input
-                name="email"
-                type="email"
-                onChange={handleOnChange}
-                value={formData.email}
-                placeholder="email"
-              />
-              <input
-                name="pass"
-                type="password"
-                onChange={handleOnChange}
-                value={formData.pass}
-                placeholder="password"
-              />
-              <button>Register</button>
+              <div>
+                <input
+                  class="form-control me-2"
+                  type="text"
+                  name="userName"
+                  onChange={handleOnChange}
+                  value={formData.userName}
+                  placeholder="username"
+                />
+                <input
+                  class="form-control me-2"
+                  name="email"
+                  type="email"
+                  onChange={handleOnChange}
+                  value={formData.email}
+                  placeholder="email"
+                />
+                <input
+                  class="form-control me-2"
+                  name="pass"
+                  type="password"
+                  onChange={handleOnChange}
+                  value={formData.pass}
+                  placeholder="password"
+                />
+              </div>
+              <div>
+                <button class="btn btn-outline-success" type="submit">
+                  Register
+                </button>
+              </div>
             </form>
           </Typography>
         </Box>
