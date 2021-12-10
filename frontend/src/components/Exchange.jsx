@@ -10,20 +10,18 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 // Redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addNewCryptoAction,
+  editCryptoAction,
+} from "../redux/actions/exchangeActions";
 
 const Exchange = () => {
   const [cryptoId, setCryptoId] = useState("");
   const [cryptoUnits, setCryptoUnits] = useState("");
   const [coin, setCoin] = useState([]);
 
-  const userId = useSelector((state) => state.user.login.id);
-  const token = useSelector((state) => state.user.login.token);
-
-  const url = `https://localhost/editwallet/${userId}/${cryptoId}`;
-  // "https://localhost/editwallet/:id/:cryptoid"
-  const url2 = `https://localhost/cryptobuy/${userId}`;
-  // "https://localhost/cryptobuy/:id"
+  const { userId, token } = useSelector((state) => state.user.login);
 
   const handleChangeCrypto = (event) => {
     setCryptoId(event.target.value);
@@ -33,32 +31,18 @@ const Exchange = () => {
     setCryptoUnits(event.target.value);
   };
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    (async () => {
-      const { data } = await axios.get(url);
-
-      if (data.results) {
-        setCoin(data.results);
-      } else {
-        setCoin(data);
-      }
-    })();
+    dispatch(editCryptoAction(userId, token));
   };
 
   const handleSubmit2 = (e) => {
     e.preventDefault();
 
-    (async () => {
-      const { data } = await axios.get(url2);
-
-      if (data.results) {
-        setCoin(data.results);
-      } else {
-        setCoin(data);
-      }
-    })();
+    dispatch(addNewCryptoAction(userId, token));
   };
 
   return (
