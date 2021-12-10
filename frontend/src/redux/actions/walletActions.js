@@ -4,18 +4,22 @@ export const WALLET_ACTION = "WALLET_ACTION";
 export const WALLET_ACTION_SUCCESS = "WALLET_ACTION_SUCCESS";
 export const WALLET_ACTION_ERROR = "WALLET_ACTION_ERROR";
 
-export function getWalletAction(wallet) {
+export function getWalletAction(wallet, token) {
+  Axios.defaults.headers.common["Authorization"] = token;
   return async (dispatch) => {
     dispatch(getWallet());
 
     try {
-      await Axios.get("http://localhost:4000/wallet", wallet);
-      dispatch(getWalletSuccess(wallet));
+      const response = await Axios.get(
+        `http://localhost:4000/cryptoview/${wallet}`
+      );
+      dispatch(getWalletSuccess(response.data));
     } catch (error) {
       dispatch(getWalletError(true));
     }
   };
 }
+// kindly reminder, set coins also
 
 const getWallet = () => ({
   type: WALLET_ACTION,

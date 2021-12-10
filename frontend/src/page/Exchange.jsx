@@ -2,16 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { DataContext } from "../context/DataProvider";
-import WalletCoins from "../components/WalletCoins";
+import ListExchange from "../components/ListExchange";
 import { Pagination } from "../components/Pagination";
 import Search from "../components/Search";
 import { getCoinsAction } from "../redux/actions/coinsActions";
 
-const Wallet = () => {
+const Exchange = () => {
   const dispatch = useDispatch();
   const coins = useSelector((state) => state.coins.coins);
-  const id = useSelector((state) => state.user.login.id);
-
   const value = useContext(DataContext);
   const [page] = value.page;
   const nextPage = value.nextPage;
@@ -25,12 +23,12 @@ const Wallet = () => {
   return (
     <div className="container p-4 mt-4">
       <div className="d-flex justify-content-center p-4 my-4">
-        <h2 className="text-center">List of crypto currencies</h2>
+        <h2 className="text-center">Exchange of crypto currencies</h2>
       </div>
-      <WalletCoins coins={coins} />
+      <ListExchange coins={coins} />
       <Pagination page={page} nextPage={nextPage} prevPage={prevPage} />
     </div>
   );
 };
 
-export default Wallet;
+export default Exchange;
