@@ -1,24 +1,29 @@
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.js'
+import '@popperjs/core'
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 
 import About from "./components/About";
-import Board from "./components/Board";
+import Board from "./page/Board";
 import Box from "@mui/material/Box";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { DataProvider } from "./context/DataProvider";
+import { Details } from "./page/Details";
 import Exchange from "./components/Exchange";
 import Home from "./components/Home";
 import IconButton from "@mui/material/IconButton";
-import Navbar from "./components/Navbar";
+import { NavMenu } from "./components/NavMenu";
 import { Provider } from "react-redux";
 import React from "react";
+import { SearchDetails } from "./page/SearchDetails";
 import Wallet from "./components/Wallet";
 import store from "./redux/store";
-import DetailCrypto from "./components/DetailCrypto";
 
-// Redux
+//redux
 
 
 
@@ -83,18 +88,21 @@ function App() {
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Provider store={store}>
-            <div className="App">
-              <ThemeMode />
-              <Navbar />
-              <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route path="/board" element={<Board />} />
-                <Route path="/exchange" element={<Exchange />} />
-                <Route path="/wallet" element={<Wallet />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/search/:id" element={<DetailCrypto />} />    
-              </Routes>
-            </div>
+            <DataProvider>
+              <div className="app">
+                <ThemeMode />
+                <NavMenu />
+                <Routes>
+                  <Route exact path="/" element={<Home />} />
+                  <Route path="/board" element={<Board />} />
+                  <Route path="/exchange" element={<Exchange />} />
+                  <Route path="/wallet" element={<Wallet />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/coins/:id" element={<Details />} />
+                  <Route path="/search/:id" element={<SearchDetails />} />
+                </Routes>
+              </div>
+            </DataProvider>
           </Provider>
         </BrowserRouter>
       </ThemeProvider>
