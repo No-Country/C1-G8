@@ -36,13 +36,13 @@ const Exchange = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(editCryptoAction(userId, token));
+    dispatch(editCryptoAction(userId, cryptoId, token));
   };
 
   const handleSubmit2 = (e) => {
     e.preventDefault();
 
-    dispatch(addNewCryptoAction(userId, token));
+    dispatch(addNewCryptoAction(userId, cryptoId, token));
   };
 
   return (

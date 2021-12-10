@@ -14,7 +14,8 @@ export const SELL_CRYPTO_SUCCESS = "SELL_CRYPTO_SUCCESS";
 export const SELL_CRYPTO_ERROR = "SELL_CRYPTO_ERROR";
 
 //BUY
-export function addNewCryptoAction(user, newCrypto) {
+export function addNewCryptoAction(user, newCrypto, token) {
+  Axios.defaults.headers.common["Authorization"] = token;
   return async (dispatch) => {
     dispatch(addNewCrypto());
 
@@ -53,7 +54,8 @@ const editCryptoSet = (crypto) => ({
   payload: crypto,
 });
 
-export function editCryptoAction(user, crypto) {
+export function editCryptoAction(user, crypto, token) {
+  Axios.defaults.headers.common["Authorization"] = token;
   return async (dispatch) => {
     dispatch(editCrypto());
 
