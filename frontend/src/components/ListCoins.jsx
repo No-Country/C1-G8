@@ -1,7 +1,9 @@
+
 import Crypto from "./Crypto";
 import React from "react";
 
 const ListCoins = ({coins}) => {
+
 
 
   return (
@@ -19,6 +21,7 @@ const ListCoins = ({coins}) => {
           </tr>
         </thead>
         <tbody>
+
           {
             coins.map((coin, index) => {
               return (
@@ -35,6 +38,7 @@ const ListCoins = ({coins}) => {
               )
             })
           }
+          
         </tbody>
       </table>
     </>
