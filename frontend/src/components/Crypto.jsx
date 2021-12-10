@@ -36,10 +36,10 @@ const Crypto = ({
     //   </tr>
     // </>
     <div className="col-12 col-md-6 col-lg-3 p-1 mb-2">
-      <div class="card" style={{height:'450px'}}>
+      <div class="card" style={{height:'500px'}}>
         <img src={image} class="card-img-top" alt={name} />
         <div class="card-body">
-          <h3 class="card-title text-dark ">Name: {name} </h3>
+          <h3 class="card-title text-dark ">Name: {id} </h3>
           <h5 class="card-title text-dark ">Price: {price}</h5>
           <Link to={`/coins/${id}`} className="btn btn-success">
               Details
