@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app{
+  background: #141414;
+  color:#fff 
+}
+code {
+font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+.content-details{
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 100px;
+}
+
+.content-loading{
+padding: 2rem;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.loading{
+width: 200px;
+height: 200px;
+border: 10px solid #ccc;
+border-top: 5px solid rgb(56, 207, 56);
+border-radius: 100%;
+margin: auto;
+animation: turn 1.5s linear infinite;
+}
+
+.cryptoimage {
+width: 100%;
+height: 100vh;
+}
+
+@keyframes turn {
+from{ transform: rotate(0deg);}
+to{ transform: rotate(360deg);}
+}
+
+@media only screen and (max-width: 400px){
+  .loading{
+    width: 100%;
+    height: 100%;
+  }
+}
