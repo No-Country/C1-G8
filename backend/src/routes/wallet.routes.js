@@ -5,11 +5,11 @@ const auth = require('../auth/auth')
 
 const {buycontrollers ,viewcontrollers, editwallet } = require('../controller/wallet.controller')
 
-router.post('/cryptobuy/:id', auth, buycontrollers);
+router.post('/cryptobuy/:id',  buycontrollers);
 
-router.get('/cryptoview/:id', auth, viewcontrollers);
+router.get('/cryptoview/:id', viewcontrollers);
 
-router.post('/editwallet/:id/:cryptoid', auth, editwallet)
+router.put('/editwallet/:id/:cryptoid', editwallet)
 
 
 

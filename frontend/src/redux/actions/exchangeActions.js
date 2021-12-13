@@ -14,16 +14,20 @@ export const SELL_CRYPTO_SUCCESS = "SELL_CRYPTO_SUCCESS";
 export const SELL_CRYPTO_ERROR = "SELL_CRYPTO_ERROR";
 
 //BUY
-export function addNewCryptoAction(user, newCrypto, token) {
-  Axios.defaults.headers.common["Authorization"] = token;
+export function addNewCryptoAction(id, name, quantity ) {
+  //Axios.defaults.headers.common["Authorization"] = token;
   return async (dispatch) => {
     dispatch(addNewCrypto());
 
+    console.log()
     try {
-      await Axios.post(`https://localhost/cryptobuy/${user}`, newCrypto);
-      dispatch(addCryptoSuccess(newCrypto));
+      const response = await Axios.post(`http://localhost:4000/api/cryptobuy/${id}`, {
+        name,
+        quantity
+      });
+      dispatch(addCryptoSuccess(response.data));
     } catch (error) {
-      dispatch(addCryptoError(true));
+      dispatch(addCryptoError(error));
     }
   };
 }
@@ -54,17 +58,18 @@ const editCryptoSet = (crypto) => ({
   payload: crypto,
 });
 
-export function editCryptoAction(user, crypto, token) {
-  Axios.defaults.headers.common["Authorization"] = token;
+export function editCryptoAction(id, cryptoId, name,quantity) {
   return async (dispatch) => {
     dispatch(editCrypto());
 
     try {
-      await Axios.put(`https://localhost/editwallet/${user}/${crypto}`, crypto);
-      dispatch(editCryptoSuccess(crypto));
+      const response = await Axios.put(`http://localhost:4000/api/editwallet/${id}/${cryptoId}`,{
+        name,
+        quantity
+      });
+      dispatch(editCryptoSuccess(response.data));
     } catch (error) {
-      console.log(error);
-      dispatch(editCryptoError(true));
+      dispatch(editCryptoError(error));
     }
   };
 }

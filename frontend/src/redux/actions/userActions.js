@@ -11,21 +11,24 @@ export const USER_REGISTER_ERROR = "USER_REGISTER_ERROR";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const USER_LOGOUT_SUCCESS = "USER_LOGOUT_SUCCESS";
 export const USER_LOGOUT_ERROR = "USER_LOGOUT_ERROR";
+export const ERROR_SERVER = 'ERROR_SERVER'
 
-export function getUserAction(user) {
+export function getUserAction(email,password) {
   return async (dispatch) => {
-    dispatch(getUser());
-
+    //dispatch(getUser());
+   
     try {
       const { data } = await Axios.post(
         "http://localhost:4000/api/login",
-        user
+        {
+          email,
+          password
+        }
       );
-      dispatch(getUserSuccess(data));
-      console.log(data);
+      data && data.token ? dispatch(getUserSuccess(data)): dispatch(getUserError(data));
+      
     } catch (error) {
-      dispatch(getUserError(true));
-      console.log(error);
+      dispatch(getUserError(error.message));
     }
   };
 }
@@ -44,20 +47,20 @@ const getUserError = (error) => ({
   payload: error,
 });
 
-export function setUserAction(user) {
+export function setUserAction(userName,email,password) {
   return async (dispatch) => {
-    dispatch(setUser());
-
     try {
+      dispatch(setUser())
       const { data } = await Axios.post(
-        "http://localhost:4000/api/create",
-        user
+        "http://localhost:4000/api/create",{
+          userName,
+          email,
+          password
+        }
       );
-      dispatch(setUserSuccess(data));
-      console.log(data);
+      data.status ? dispatch(setUserSuccess(data)) : dispatch(getErrorServerAction(data));
     } catch (error) {
-      dispatch(setUserError(true));
-      console.log(error);
+      dispatch(setUserError());
     }
   };
 }
@@ -73,23 +76,30 @@ const setUserSuccess = (register) => ({
 
 const setUserError = (error) => ({
   type: USER_REGISTER_ERROR,
-  payload: error,
 });
 
-export function logoutAction(user) {
+const getErrorServerAction = (error)=>{
+  return{
+    type: ERROR_SERVER,
+    payload:error
+  }
+}
+
+export function logoutAction(name,id) {
   return async (dispatch) => {
     dispatch(logoutUser());
 
     try {
       const { data } = await Axios.delete(
         "http://localhost:4000/api/logout",
-        user
+        {
+          name,
+          id
+        }
       );
       dispatch(logoutSuccess(data));
-      console.log(data);
     } catch (error) {
       dispatch(logoutError(true));
-      console.log(error);
     }
   };
 }

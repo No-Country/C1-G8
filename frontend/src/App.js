@@ -27,6 +27,10 @@ import { SearchDetails } from "./page/SearchDetails";
 //redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { FormLogin } from "./components/FormLogin";
+import { FormRegister } from "./components/FormRegister";
+import { BuyForm } from "./components/BuyForm";
+import { EditForm } from "./components/EditForm";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -75,6 +79,8 @@ function App() {
     []
   );
 
+  
+
   const theme = React.useMemo(
     () =>
       createTheme({
@@ -101,6 +107,11 @@ function App() {
                   <Route path="/about" element={<About />} />
                   <Route path="/coins/:id" element={<Details />} />
                   <Route path="/search/:id" element={<SearchDetails />} />
+                  <Route path='/login' element={<FormLogin/>} />
+                  <Route path='/register' element={<FormRegister/>} />
+                  <Route path='/my-wallet' element={<Wallet/>} />
+                  <Route path='/buy/:userId/:currencyId' element={<BuyForm/>} />
+                  <Route path='/editwallet/:userId/:currencyId/:currencyName' element={<EditForm/>} />
                 </Routes>
               </div>
             </DataProvider>
