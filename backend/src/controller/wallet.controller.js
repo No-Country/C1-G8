@@ -1,10 +1,11 @@
 const Users = require('../model/User')
 const axios = require('axios')
 
-const getData = async (name,quantity)=>{
+const getData = async (id,name,quantity)=>{
     try {
         const response = await axios.get(`https://api.coingecko.com/api/v3/coins/${name}`)
         const results = {
+            id:id,
             name:response.data.id,
             price:response.data.market_data.current_price.usd,
             image:response.data.image.large,
@@ -24,10 +25,10 @@ const buycontrollers = async (req, res) => {
         const { name, quantity } = req.body
         wallet.push({ name, quantity })
         await user.save()
-        res.json(user.wallet)
+        res.json({status:'success',msg:'Successful purchase'})
     }
     catch {
-        res.json('error')
+        res.json({status:'error',msg:'The purchase could not be made'})
     }
 }
 const viewcontrollers = async (req, res) => {
@@ -35,7 +36,7 @@ const viewcontrollers = async (req, res) => {
         const { id } = req.params
         const user = await Users.findById(id)
         const myWallet = await Promise.all(user.wallet.map((item)=>{
-            return getData(item.name,item.quantity)
+            return getData(item._id,item.name,item.quantity)
         })) 
         
         res.json(myWallet)
@@ -52,16 +53,17 @@ const editwallet = async (req, res) => {
         const  user = await Users.findById(id)
         user.wallet.forEach(w => {
             if(w._id == cryptoid){
-                Object.assign(w,req.body)
+                w.name = req.body.name
+                w.quantity = parseInt(w.quantity) + parseInt(req.body.quantity)
             }
         })
         await user.save()
         
         
-        res.json(user.wallet)
+        res.json({status:'success',msg:'Successful purchase'})
 
     }catch{ 
-        res.json('error')
+        res.json({status:'error',msg:'The purchase could not be made'})
 
     }
 }

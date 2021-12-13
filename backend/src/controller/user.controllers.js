@@ -9,10 +9,9 @@ const createUser = async (req, res) => {
     const user = new Users({ userName, email, password: bcrypt.hashSync(password, 10) });
     try {
         await user.save();
-
-        res.json({ user });
+        res.json({ status:true, msg:'User created successfully'});
     } catch (error) {
-        res.json({ error: error.message });
+        res.json({status: false, msg:'Some data is already in use'});
     }
 }
 
@@ -21,7 +20,7 @@ const loginUser = async (req, res) => {
     try {
         const user = await Users.findOne({ email });
         if (user) {
-            bcrypt.compare(password,user.password, (err,result)=>{
+            bcrypt.compare(password, user.password, (err, result) => {
                 if (result) {
                     req.session._id = user._id
                     req.session.name = user.userName
@@ -32,7 +31,7 @@ const loginUser = async (req, res) => {
                     res.json({ error: 'Invalid data' });
                 }
             })
-            
+
         } else {
             res.json({ error: 'Invalid data' });
         }
@@ -44,11 +43,11 @@ const loginUser = async (req, res) => {
 
 const logout = (req, res) => {
     try {
-        if(req.session){
-            req.session.destroy((err)=>{
-                if(err){
+        if (req.session) {
+            req.session.destroy((err) => {
+                if (err) {
                     res.json('Unable to log out')
-                }else{
+                } else {
                     res.json('Logout successful')
                 }
             })
